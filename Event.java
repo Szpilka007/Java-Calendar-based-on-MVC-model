@@ -1,17 +1,24 @@
 public class Event {
-    private String id;
+    private int id;
+    private int dayNumber;
+    private String moth;
+    private int year;
     private String description;
-    public Event(String id,String description){
+    public Event(int id,int dayNumber,String month, int year,String description){
         this.id = id;
+        this.dayNumber= dayNumber;
+        this.moth = month;
+        this.year = year;
         this.description = description;
     }
-    public String getId(){
+    public int getId(){
         return this.id;
     }
-    public String getDescription(){
-        return this.description;
-    }
+    public String getDescription(){ return this.description; }
+    public int getDayNumber(){ return this.dayNumber;}
+    public int getYear(){ return this.year;}
+    public String getMoth(){ return this.moth;}
     public String showEvent(){
-        return this.id+" "+this.description;
+        return "Id: "+ this.id+" "+"Data: "+this.getDayNumber()+" "+this.getMoth()+" "+this.getYear()+" Description: "+this.description;
     }
 }

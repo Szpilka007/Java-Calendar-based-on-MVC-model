@@ -9,12 +9,14 @@ public class day {
     public int getNumber() {
         return this.number;
     }
-    public void addEventToDay(Event ev){
-        daysEvents.add(ev);
-    }
-    public void ShowEvents(){
-        for(int i=0; i<daysEvents.size(); i++)
-            daysEvents.get(i).showEvent();
+    public void addEventToDay(Event ev){ daysEvents.add(ev); }
+    public void ShowEvents() {
+        if (daysEvents.size() != 0) {
+            for (int i = 0; i < daysEvents.size(); i++)
+                System.out.println(daysEvents.get(i).showEvent());
+        } else {
+            System.out.println("No events");
+        }
     }
 
 }
