@@ -18,5 +18,4 @@ public class day {
             System.out.println("No events");
         }
     }
-
 }
