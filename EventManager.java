@@ -6,7 +6,7 @@ public class EventManager {
 	
 	public EventManager() {
 		this.years = new Vector<Year>();
-		for (int i = 1970; i < 2051; i++) {
+		for (int i = 2019; i < 2020; i++) {
 			Year year = new Year(i);
 			years.add(year);
 		}
@@ -14,12 +14,12 @@ public class EventManager {
 	}
 	
 	public void addEvent(int id, int dayNumber, int monthNumber, int yearNumber, String description) {
-		years.elementAt(yearNumber-1970).addEventToMonth(new Event(id, dayNumber, monthNumber, yearNumber, description));
+		years.elementAt(yearNumber-2019).addEventToMonth(new Event(id, dayNumber, monthNumber, yearNumber, description));
 	}
 	
 	public void showEventInYear(int yearNumber) {
 			for (int i = 0; i < 12; i++)
-				years.elementAt(yearNumber-1970).showEventsInMonth(i+1);		
+				years.elementAt(yearNumber-2019).showEventsInMonth(i+1);		
 	}
 
 }

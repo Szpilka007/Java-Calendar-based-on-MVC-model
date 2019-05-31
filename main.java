@@ -7,8 +7,8 @@ public class main {
 	public static void main(String[] args) {
 		EventManager eManager = new EventManager();
 		
-		eManager.addEvent(0, 1, 1, 1970, "Pierwsze wydarzenie");
-		eManager.showEventInYear(1970);
+		eManager.addEvent(0, 8, 5, 2019, "Pierwsze wydarzenie");
+		eManager.showEventInYear(2019);
 		
 	}
 
