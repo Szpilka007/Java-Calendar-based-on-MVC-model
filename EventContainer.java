@@ -17,6 +17,15 @@ public class EventContainer {
 		
 	}
 	
+	public Vector<Event> getEventsOnDate(int dayNumber, int monthNumber, int yearNumber) {
+		Vector<Event> eventsOnDate = new Vector<Event>();
+		for (Event e:eventsList)
+			if (e.getDayNumber() == dayNumber && e.getMonthNumber() == monthNumber && e.getYearNumber() == yearNumber)
+				eventsOnDate.add(e);
+		
+		return eventsOnDate;
+	}
+	
 	public void addEvent(Event event) {		
 		if (getEvent(event.getID()) != null) {
 			System.out.println("Istnieje wydarzenie o takim ID");
@@ -26,15 +35,26 @@ public class EventContainer {
 		System.out.println("Dodano wydarzenie");
 	}
 	
-	public void deleteEvent(int eventID) {
-		if (getEvent(eventID) instanceof Event)
+	public boolean deleteEvent(int eventID) {
+		if (getEvent(eventID) instanceof Event) {
 			eventsList.remove(getEvent(eventID));
-		else
-			System.err.println("Nie ma takiego wydarzenia do usuniêcia");
+			return true;
+		}
+			
+		else {
+			System.err.println("Nie ma takiego wydarzenia");
+			return false;
+		}
+			
 	}
 
 	public void showEvents() {
 		for (Event e:eventsList)
 			System.out.println(e.toString());
+	}
+	
+	public void modifyEvent(int eventID, int newDayNumber, int newMonthNumber, int newYearNumber,String newDescription) {
+		if (deleteEvent(eventID))
+			addEvent(new Event(eventID, newDayNumber, newMonthNumber, newYearNumber, newDescription));
 	}
 }
