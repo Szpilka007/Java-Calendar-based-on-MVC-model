@@ -46,12 +46,9 @@ public class EventManager {
 		eventContainer.showEvents();
 	}
 	
-	/*
+	public void modifyEvent(int eventID, int newDayNumber, int newMonthNumber, int newYearNumber, String newDescription) {
+		eventContainer.modifyEvent(eventID, newDayNumber, newMonthNumber, newYearNumber, newDescription);
 	}
 	
-	public void showEventInYear(int yearNumber) {
-			for (int i = 0; i < 12; i++)
-				years.elementAt(yearNumber-2019).showEventsInMonth(i+1);		
-	}*/
 
 }

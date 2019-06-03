@@ -18,6 +18,10 @@ public class main {
 		
 		eManager.showEvents();
 		
+		eManager.modifyEvent(4, 12, 6, 2019, "Zmodyfikowane wydarzenie");
+		System.out.println();
+		eManager.showEvents();
+		
 	}
 
 }
