@@ -10,7 +10,10 @@ import java.util.*;
 import java.awt.event.*;
 import javax.swing.table.*;
 
-
+/**
+ * param
+ *
+ */
 public class GUI extends JFrame implements ActionListener {
 
     JMenuBar menuBar;
@@ -63,16 +66,26 @@ public class GUI extends JFrame implements ActionListener {
 
         String[] columns = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         model = new DefaultTableModel(null, columns);
-        JTable table = new JTable(model);
+        JTable table = new JTable(model) {
+        	 public boolean isCellEditable(int rowIndex, int mColIndex) {
+        	        return false;
+        	      }
+        };
+        
         JScrollPane pane = new JScrollPane(table);
-        pane.setBounds(100,100,700,400);
-
+        pane.setBounds(100,100,700,373);
+        table.setRowHeight(70);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for(int i=0; i<7; i++)
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        
         table.setCellSelectionEnabled(true);
 
         ListSelectionModel select= table.getSelectionModel();
         select.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        eventLook.setBounds(900,0,200,100);
+        eventLook.setBounds(900,0,300,100);
         eventLook.setFont(new Font("Serif", Font.PLAIN, 28));
 
 
