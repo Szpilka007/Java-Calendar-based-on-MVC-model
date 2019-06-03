@@ -98,7 +98,9 @@ public class EventManager {
 	public void showEvents() {
 		eventContainer.showEvents();
 	}
-	
+
+
+
 	/*
 	}
 	

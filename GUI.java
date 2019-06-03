@@ -16,9 +16,11 @@ import javax.swing.table.*;
  */
 public class GUI extends JFrame implements ActionListener {
 
+
     JMenuBar menuBar;
     String actualDay;
     JLabel actualMonth= new JLabel();
+    JLabel infoAboutEvent;
     JLabel eventLook = new JLabel(actualDay);
     JFrame frame = new JFrame();
     JMenuItem AddEvent, AboutProgram;
@@ -28,11 +30,14 @@ public class GUI extends JFrame implements ActionListener {
     Calendar cal = new GregorianCalendar();
     String month = cal.getDisplayName(java.util.Calendar.MONTH, java.util.Calendar.LONG, Locale.US);
 
+    EventManager eManager = new EventManager();
+
     GUI() {
 
         frame.setLayout(null);//using no layout managers
         frame.setSize(1200, 600);
         frame.setVisible(true);//making the frame visible
+
 
         JButton nextMonth = new JButton(">>>");
         nextMonth.setBounds(700, 50, 100, 40);
@@ -71,15 +76,15 @@ public class GUI extends JFrame implements ActionListener {
         	        return false;
         	      }
         };
-        
+
         JScrollPane pane = new JScrollPane(table);
         pane.setBounds(100,100,700,373);
-        table.setRowHeight(70);
+        table.setRowHeight(58);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         for(int i=0; i<7; i++)
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-        
+
         table.setCellSelectionEnabled(true);
 
         ListSelectionModel select= table.getSelectionModel();
@@ -87,6 +92,12 @@ public class GUI extends JFrame implements ActionListener {
 
         eventLook.setBounds(900,0,300,100);
         eventLook.setFont(new Font("Serif", Font.PLAIN, 28));
+
+        //Informacje o evencie tzw szczegoly;
+
+        infoAboutEvent = new JLabel();
+        infoAboutEvent.setBounds(900,0,300,190);
+
 
 
         // buttons action listener
@@ -110,7 +121,7 @@ public class GUI extends JFrame implements ActionListener {
 
         select.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
-               int Data =0;
+               int Data = 1 ;
                 int[] row =table.getSelectedRows();
                 int[] columns = table.getSelectedColumns();
                 for (int i = 0; i < row.length; i++) {
@@ -123,6 +134,7 @@ public class GUI extends JFrame implements ActionListener {
         });
 
         frame.add(pane);
+        frame.add(infoAboutEvent);
         frame.add(eventLook);
         frame.add(actualMonth);
         frame.add(nextMonth);
@@ -136,8 +148,67 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == AddEvent)
-            System.out.println("AddEvent");
+       //TWORZENIE WYDARZENIA
+        if (e.getSource() == AddEvent) {
+            JFrame add = new JFrame();
+            add.setBounds(100,200,500,300);
+
+            JLabel mainTitle = new JLabel("Add new event");
+            mainTitle.setFont(new Font("Serif",Font.BOLD,21));
+            mainTitle.setBounds(10,10,300,20);
+            JLabel WriteDay = new JLabel("Day: ");
+            JLabel WriteMonth = new JLabel("Month: ");
+            JLabel WriteYear = new JLabel("Year: ");
+            JLabel WriteDescription = new JLabel("Description: ");
+
+            WriteDay.setBounds(20,30,50,50);
+            WriteMonth.setBounds(20,60,50,50);
+            WriteYear.setBounds(20,90,50,50);
+            WriteDescription.setBounds(20,120,80,50);
+
+            JTextArea day = new JTextArea();
+            JTextArea month = new JTextArea();
+            JTextArea year = new JTextArea();
+            JTextArea description = new JTextArea();
+
+            day.setBounds(110,48,300,20);
+            month.setBounds(110,78,300,20);
+            year.setBounds(110,108,300,20);
+            description.setBounds(110,138,300,60);
+
+
+            JButton addEvent = new JButton("Add event");
+            addEvent.setBounds(300,220,100,30);
+            addEvent.addActionListener(this);
+
+            add.setTitle("Add new event");
+            add.setVisible(true);
+            add.setLayout(null);
+            add.add(mainTitle);
+            add.add(WriteDay);
+            add.add(WriteMonth);
+            add.add(WriteYear);
+            add.add(WriteDescription);
+            add.add(day);
+            add.add(month);
+            add.add(year);
+            add.add(description);
+            add.add(addEvent);
+
+
+            addEvent.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    String d = day.getText();
+                    String m = month.getText();
+                    String y = year.getText();
+                    String de = description.getText();
+                    eManager.addEvent(1,Integer.parseInt(d),Integer.parseInt(m),Integer.parseInt(y),de);
+
+                }
+            });
+
+        };
 
         if (e.getSource() == AboutProgram) {
             JFrame f = new JFrame();
@@ -160,7 +231,7 @@ public class GUI extends JFrame implements ActionListener {
         int weeks = cal.getActualMaximum(java.util.Calendar.WEEK_OF_MONTH);
 
         model.setRowCount(0);
-        model.setRowCount(weeks);
+        model.setRowCount(6);
 
         int i = startDay - 1;
         for (int day = 1; day <= numberOfDays; day++) {
