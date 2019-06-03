@@ -17,6 +17,15 @@ public class EventContainer {
 		
 	}
 	
+	public Vector<Event> getEventsOnDate(int dayNumber, int monthNumber, int yearNumber) {
+		Vector<Event> eventsOnDate = new Vector<Event>();
+		for (Event e:eventsList)
+			if (e.getDayNumber() == dayNumber && e.getMonthNumber() == monthNumber && e.getYearNumber() == yearNumber)
+				eventsOnDate.add(e);
+		
+		return eventsOnDate;
+	}
+	
 	public void addEvent(Event event) {		
 		if (getEvent(event.getID()) != null) {
 			System.out.println("Istnieje wydarzenie o takim ID");
