@@ -6,8 +6,9 @@ public class main {
 	
 	public static void main(String[] args) {
 		EventManager eManager = new EventManager();
-		//JFrame.setDefaultLookAndFeelDecorated(true);
-		//GUI gui = new GUI();
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		eManager.addEvent(56, 22, 6, 2019, "Pierwsze wydarzenie");
+		GUI gui = new GUI();
 		
 		eManager.addEvent(0, 31, 6, 2019, "Pierwsze wydarzenie");
 		eManager.addEvent(1, 9, 5, 2019, "Pierwsze wydarzenie");

@@ -29,7 +29,7 @@ public class GUI extends JFrame implements ActionListener {
     JLabel label = new JLabel();
     Calendar cal = new GregorianCalendar();
     String month = cal.getDisplayName(java.util.Calendar.MONTH, java.util.Calendar.LONG, Locale.US);
-
+    String des = "";
     EventManager eManager = new EventManager();
 
     GUI() {
@@ -97,6 +97,7 @@ public class GUI extends JFrame implements ActionListener {
 
         infoAboutEvent = new JLabel();
         infoAboutEvent.setBounds(900,0,300,190);
+        infoAboutEvent.setText(des);
 
 
 
@@ -128,8 +129,22 @@ public class GUI extends JFrame implements ActionListener {
                     for (int j = 0; j < columns.length; j++) {
                         Data = (int)table.getValueAt(row[i], columns[j]);
                     } }
-                actualDay = String.valueOf(Data)+" "+cal.getDisplayName(java.util.Calendar.MONTH, java.util.Calendar.LONG, Locale.US)+" "+ (int)cal.get(java.util.Calendar.YEAR); ;
+                String month = cal.getDisplayName(java.util.Calendar.MONTH, java.util.Calendar.LONG, Locale.US);
+                int intMonth = cal.get(java.util.Calendar.MONTH);
+                int year = cal.get(java.util.Calendar.YEAR);
+                actualDay = String.valueOf(Data)+" "+month+" "+ year ; ;
                 eventLook.setText(actualDay);
+                Vector<Event> ev = eManager.getEventsOnDate(Data,intMonth,year);
+                System.out.println(ev.size());
+                des = "";
+                if(ev.size() != 0) {
+                    for (int i = 0; i < ev.size(); i++)
+                        des += ev.get(i).getDescription();
+                }
+                else
+                    des = "No events";
+
+                infoAboutEvent.setText(des);
             }
         });
 
