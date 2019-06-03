@@ -11,7 +11,7 @@ public class Event {
 		this.dayNumber = dayNumber;
 		this.monthNumber = monthNumber;
 		this.yearNumber = yearNumber;
-		this.description = description;
+		this.description = description+"\n";
 	}
 
 	public void setDayNumber(int dayNumber) {
