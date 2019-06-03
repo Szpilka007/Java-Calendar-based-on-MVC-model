@@ -28,10 +28,9 @@ public class EventManager {
 
 		
 	}
-	public void addEvent(int id, int dayNumber, int monthNumber, int yearNumber, String description) {
+	public void addEvent(int dayNumber, int monthNumber, int yearNumber, String description) {
 		if (checkEventDate(dayNumber, monthNumber, yearNumber)) {
-			Event event = new Event(id, dayNumber, monthNumber, yearNumber, description);
-			eventContainer.addEvent(event);
+			eventContainer.addEvent(dayNumber, monthNumber, yearNumber, description);
 		}
 		else
 			System.err.println("Wprowadzona data wykracza poza zakres");
@@ -39,7 +38,9 @@ public class EventManager {
 	}
 	
 	public Vector<Event> getEventsOnDate(int dayNumber, int monthNumber, int yearNumber) {
-		return eventContainer.getEventsOnDate(dayNumber, monthNumber, yearNumber);
+		Vector<Event> eventsOnDate = new Vector<Event>();
+		eventsOnDate.addAll(eventContainer.getEventsOnDate(dayNumber, monthNumber, yearNumber));
+		return eventsOnDate;
 	}
 	
 	public void showEvents() {

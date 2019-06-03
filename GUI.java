@@ -33,6 +33,7 @@ public class GUI extends JFrame implements ActionListener {
     EventManager eManager = new EventManager();
 
     GUI() {
+    	
 
         frame.setLayout(null);//using no layout managers
         frame.setSize(1200, 600);
@@ -130,11 +131,12 @@ public class GUI extends JFrame implements ActionListener {
                         Data = (int)table.getValueAt(row[i], columns[j]);
                     } }
                 String month = cal.getDisplayName(java.util.Calendar.MONTH, java.util.Calendar.LONG, Locale.US);
-                int intMonth = cal.get(java.util.Calendar.MONTH);
+                int intMonth = cal.get(java.util.Calendar.MONTH)+1;
                 int year = cal.get(java.util.Calendar.YEAR);
-                actualDay = String.valueOf(Data)+" "+month+" "+ year ; ;
+                actualDay = String.valueOf(Data)+" "+month+" "+ year ;
                 eventLook.setText(actualDay);
-                Vector<Event> ev = eManager.getEventsOnDate(Data,intMonth,year);
+                Vector<Event> ev = new Vector<Event>();
+                ev = eManager.getEventsOnDate(Data,intMonth,year);
                 System.out.println(ev.size());
                 des = "";
                 if(ev.size() != 0) {
@@ -218,7 +220,8 @@ public class GUI extends JFrame implements ActionListener {
                     String m = month.getText();
                     String y = year.getText();
                     String de = description.getText();
-                    eManager.addEvent(1,Integer.parseInt(d),Integer.parseInt(m),Integer.parseInt(y),de);
+                    eManager.addEvent(Integer.parseInt(d),Integer.parseInt(m),Integer.parseInt(y),de);
+                    
 
                 }
             });

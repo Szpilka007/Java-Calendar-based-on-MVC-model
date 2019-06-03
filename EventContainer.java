@@ -1,5 +1,7 @@
 import java.util.Vector;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
+
 public class EventContainer {
 
 	private Vector<Event> eventsList;
@@ -17,6 +19,16 @@ public class EventContainer {
 		
 	}
 	
+	public int getMinimumEventID() {
+		if (eventsList.size() == 0)
+			return 0;
+		
+		else {
+			java.util.Collections.sort(eventsList, new EventIDComparator());
+			return eventsList.lastElement().getID()+1;
+		}
+	}
+	
 	public Vector<Event> getEventsOnDate(int dayNumber, int monthNumber, int yearNumber) {
 		Vector<Event> eventsOnDate = new Vector<Event>();
 		for (Event e:eventsList)
@@ -26,11 +38,21 @@ public class EventContainer {
 		return eventsOnDate;
 	}
 	
-	public void addEvent(Event event) {		
+	public void addEvent(int id, int dayNumber, int monthNumber, int yearNumber, String description) {
+		
+		Event event = new Event(id, dayNumber, monthNumber, yearNumber, description);
+		
 		if (getEvent(event.getID()) != null) {
 			System.out.println("Istnieje wydarzenie o takim ID");
 			return;
 		}
+		eventsList.add(event);
+		System.out.println("Zmodyfikowano wydarzenie");
+	}
+	
+	public void addEvent(int dayNumber, int monthNumber, int yearNumber, String description) {
+		int eventID = getMinimumEventID();
+		Event event = new Event(eventID ,dayNumber, monthNumber, yearNumber, description);
 		eventsList.add(event);
 		System.out.println("Dodano wydarzenie");
 	}
@@ -44,8 +66,7 @@ public class EventContainer {
 		else {
 			System.err.println("Nie ma takiego wydarzenia");
 			return false;
-		}
-			
+		}			
 	}
 
 	public void showEvents() {
@@ -55,6 +76,7 @@ public class EventContainer {
 	
 	public void modifyEvent(int eventID, int newDayNumber, int newMonthNumber, int newYearNumber,String newDescription) {
 		if (deleteEvent(eventID))
-			addEvent(new Event(eventID, newDayNumber, newMonthNumber, newYearNumber, newDescription));
+			addEvent(eventID, newDayNumber, newMonthNumber, newYearNumber, newDescription);
+		java.util.Collections.sort(eventsList, new EventIDComparator());
 	}
 }
