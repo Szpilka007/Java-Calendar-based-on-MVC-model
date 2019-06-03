@@ -38,9 +38,7 @@ public class EventManager {
 	}
 	
 	public Vector<Event> getEventsOnDate(int dayNumber, int monthNumber, int yearNumber) {
-		Vector<Event> eventsOnDate = new Vector<Event>();
-		eventsOnDate.addAll(eventContainer.getEventsOnDate(dayNumber, monthNumber, yearNumber));
-		return eventsOnDate;
+		return eventContainer.getEventsOnDate(dayNumber, monthNumber, yearNumber);
 	}
 	
 	public void showEvents() {

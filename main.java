@@ -17,9 +17,9 @@ public class main {
 		eventManager.addEvent(10, 5, 2019, "Pierwsze wydarzenie");
 		eventManager.addEvent(9, 5, 2019, "Pierwsze wydarzenie");
 		
-		Vector<Event> eventsOnDate = new Vector<Event>();
-		eventsOnDate = eventManager.getEventsOnDate(9, 5, 2019);
-		System.out.println(eventsOnDate.size());
+
+		eventManager.getEventsOnDate(9, 5, 2019);
+		System.out.println(eventManager.getEventsOnDate(9, 5, 2019).size());
 		
 		eventManager.showEvents();
 		
