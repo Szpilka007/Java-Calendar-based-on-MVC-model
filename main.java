@@ -6,10 +6,13 @@ public class main {
 	
 	public static void main(String[] args) {
 		EventManager eManager = new EventManager();
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		GUI gui = new GUI();
+		//JFrame.setDefaultLookAndFeelDecorated(true);
+		//GUI gui = new GUI();
 		eManager.addEvent(0, 8, 5, 2019, "Pierwsze wydarzenie");
-		eManager.showEventInYear(2019);
+		eManager.addEvent(1, 9, 5, 2019, "Pierwsze wydarzenie");
+		eManager.addEvent(2, 10, 5, 2019, "Pierwsze wydarzenie");
+		eManager.addEvent(3, 9, 5, 2019, "Pierwsze wydarzenie");
+		eManager.showEvents();
 		
 	}
 

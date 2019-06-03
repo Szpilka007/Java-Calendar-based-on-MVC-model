@@ -14,6 +14,22 @@ public class Event {
 		this.description = description;
 	}
 
+	public void setDayNumber(int dayNumber) {
+		this.dayNumber = dayNumber;
+	}
+
+	public void setMonthNumber(int monthNumber) {
+		this.monthNumber = monthNumber;
+	}
+
+	public void setYearNumber(int yearNumber) {
+		this.yearNumber = yearNumber;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public int getID() {
 		return ID;
 	}
