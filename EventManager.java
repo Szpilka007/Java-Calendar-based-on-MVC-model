@@ -56,6 +56,14 @@ public class EventManager {
 		eventContainer.removeTooOldEvents(dayNumber, numberOfMonths, yearNumber);
 	}
 	
+	public void writeToXMLFile(String xmlFilePath) {
+		eventContainer.writeToXMLFile(xmlFilePath);
+	}
+	
+	public void loadFromXMLFile(String xmlFilePath) {
+		eventContainer.loadFromXMLFile(xmlFilePath);
+	}
+	
 	
 	
 

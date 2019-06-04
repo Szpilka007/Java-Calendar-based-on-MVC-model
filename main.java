@@ -18,7 +18,7 @@ public class main {
 		System.out.println(eventManager.getEventsOnDate(9, 5, 2019).size());
 		
 		eventManager.showEvents();
-		
+		eventManager.writeToXMLFile("D:\\Projekty\\Java\\Projekt\\xmlfile.xml");
 		eventManager.modifyEvent(4, 12, 6, 2019, "Zmodyfikowane wydarzenie");
 		System.out.println();
 		eventManager.showEvents();
@@ -27,6 +27,11 @@ public class main {
 		eventManager.removeTooOldEvents(10, 5, 2019);
 		System.out.println();
 		eventManager.showEvents();
+		eventManager.removeTooOldEvents(31, 12, 2019);
+		eventManager.showEvents();
+		eventManager.loadFromXMLFile("D:\\Projekty\\Java\\Projekt\\xmlfile.xml");
+		eventManager.showEvents();
+		
 		
 	}
 
