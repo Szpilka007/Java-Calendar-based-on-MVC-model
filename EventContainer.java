@@ -80,11 +80,13 @@ public class EventContainer {
 		java.util.Collections.sort(eventsList, new EventIDComparator());
 	}
 	
-	public void removeTooOldEvents(int numberOfMonths) {
+	public void removeTooOldEvents(int dayNumber, int monthNumber, int yearNumber) {
 		
 		Calendar calendar = Calendar.getInstance();
-		int month = calendar.get(Calendar.MONTH)+numberOfMonths;
-		calendar.set(Calendar.MONTH, month);
+		
+		calendar.set(Calendar.DATE, dayNumber);
+		calendar.set(Calendar.MONTH, monthNumber);
+		calendar.set(Calendar.YEAR, yearNumber);
 		Date currentDate = calendar.getTime();
 		
 		for (int i = 0; i < eventsList.size(); i++)
@@ -94,5 +96,6 @@ public class EventContainer {
 				i--; //je¿eli nie zatrzymamy iteracji nastêpuje pominiêcie elementów
 			}	
 	}
+	
 	
 }

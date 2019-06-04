@@ -24,7 +24,7 @@ public class main {
 		eventManager.showEvents();
 		
 		System.out.println();
-		eventManager.removeTooOldEvents(1);
+		eventManager.removeTooOldEvents(10, 5, 2019);
 		System.out.println();
 		eventManager.showEvents();
 		

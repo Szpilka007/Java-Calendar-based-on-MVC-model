@@ -52,8 +52,8 @@ public class EventManager {
 		eventContainer.deleteEvent(eventID);
 	}
 	
-	public void removeTooOldEvents(int numberOfMonths) {
-		eventContainer.removeTooOldEvents(numberOfMonths);
+	public void removeTooOldEvents(int dayNumber, int numberOfMonths, int yearNumber) {
+		eventContainer.removeTooOldEvents(dayNumber, numberOfMonths, yearNumber);
 	}
 	
 	
