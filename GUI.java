@@ -139,9 +139,10 @@ public class GUI extends JFrame implements ActionListener {
                 ev = eManager.getEventsOnDate(Data,intMonth,year);
                 System.out.println(ev.size());
                 des = "";
+                String newLine = System.getProperty("line.separator");
                 if(ev.size() != 0) {
                     for (int i = 0; i < ev.size(); i++)
-                        des += ev.get(i).getDescription();
+                        des += i+1+". "+ev.get(i).getDescription()+"      ";
                 }
                 else
                     des = "No events";
