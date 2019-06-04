@@ -5,6 +5,8 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.*;
 import java.awt.event.*;
@@ -23,7 +25,7 @@ public class GUI extends JFrame implements ActionListener {
     JTextArea infoAboutEvent;
     JLabel eventLook = new JLabel(actualDay);
     JFrame frame = new JFrame();
-    JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme;
+    JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme,SaveToXMLfile,LoadFromXmlFile;
     JMenu Calendar, Events, Info,Settings;
     DefaultTableModel model;
     JLabel label = new JLabel();
@@ -65,6 +67,13 @@ public class GUI extends JFrame implements ActionListener {
         Theme = new JMenuItem("Theme");
         Theme.addActionListener(this);
 
+        SaveToXMLfile = new JMenuItem("Save to XML file");
+        SaveToXMLfile.addActionListener(this);
+
+        LoadFromXmlFile = new JMenuItem("Load from XML file");
+        LoadFromXmlFile.addActionListener(this);
+
+
         menuBar = new JMenuBar();
 
         Calendar = new JMenu("Calendar");
@@ -81,6 +90,8 @@ public class GUI extends JFrame implements ActionListener {
         menuBar.add(Events);
         menuBar.add(Info);
         menuBar.add(Settings);
+        Calendar.add(SaveToXMLfile);
+        Calendar.add(LoadFromXmlFile);
 
 
         //TABELA
@@ -383,6 +394,44 @@ public class GUI extends JFrame implements ActionListener {
                     }
                 }
             });
+        }
+
+        //Zapis do pliku XML
+        if (e.getSource() == SaveToXMLfile) {
+
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            int rVal = fileChooser.showOpenDialog(null);
+            if (rVal == JFileChooser.APPROVE_OPTION) {
+                try {
+                    String path = fileChooser.getSelectedFile()+".txt";
+                    eManager.writeToXMLFile(path);
+                }
+                catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+        }
+
+        // Wczytywanie z pliku XML
+        if (e.getSource() == LoadFromXmlFile) {
+
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            int rVal = fileChooser.showOpenDialog(null);
+            if (rVal == JFileChooser.APPROVE_OPTION) {
+                try {
+                    String path = fileChooser.getSelectedFile()+".txt";
+                    eManager.loadFromXMLFile(path);
+                }
+                catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
         }
 
     }
