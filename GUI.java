@@ -405,7 +405,7 @@ public class GUI extends JFrame implements ActionListener {
             int rVal = fileChooser.showOpenDialog(null);
             if (rVal == JFileChooser.APPROVE_OPTION) {
                 try {
-                    String path = fileChooser.getSelectedFile()+".txt";
+                    String path = fileChooser.getSelectedFile()+".xml";
                     eManager.writeToXMLFile(path);
                 }
                 catch (Exception ex) {
@@ -424,7 +424,8 @@ public class GUI extends JFrame implements ActionListener {
             int rVal = fileChooser.showOpenDialog(null);
             if (rVal == JFileChooser.APPROVE_OPTION) {
                 try {
-                    String path = fileChooser.getSelectedFile()+".txt";
+                    String path = fileChooser.getSelectedFile()+"";
+                    System.out.println(path);
                     eManager.loadFromXMLFile(path);
                 }
                 catch (Exception ex) {
