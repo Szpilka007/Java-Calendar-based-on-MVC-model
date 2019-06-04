@@ -80,13 +80,11 @@ public class EventContainer {
 		java.util.Collections.sort(eventsList, new EventIDComparator());
 	}
 	
-	public void removeTooOldEvents(int dayNumber, int monthNumber, int yearNumber) {
+	public void removeTooOldEvents(int numberOfMonths) {
 		
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.DATE, dayNumber);
-		calendar.set(Calendar.MONTH, monthNumber-1);
-		calendar.set(Calendar.YEAR, yearNumber);
-		
+		int month = calendar.get(Calendar.MONTH)+numberOfMonths;
+		calendar.set(Calendar.MONTH, month);
 		Date currentDate = calendar.getTime();
 		
 		for (int i = 0; i < eventsList.size(); i++)

@@ -8,7 +8,7 @@ public class main {
 		eventManager.addEvent(22, 6, 2019, "Pierwsze wydarzenie");
 		GUI gui = new GUI();
 		
-		eventManager.addEvent(31, 6, 2019, "Pierwsze wydarzenie");
+		eventManager.addEvent(3, 7, 2019, "Pierwsze wydarzenie");
 		eventManager.addEvent(9, 5, 2019, "Pierwsze wydarzenie");
 		eventManager.addEvent(10, 5, 2019, "Pierwsze wydarzenie");
 		eventManager.addEvent(9, 5, 2019, "Pierwsze wydarzenie");
@@ -24,7 +24,7 @@ public class main {
 		eventManager.showEvents();
 		
 		System.out.println();
-		eventManager.removeTooOldEvents(9, 5, 2019);
+		eventManager.removeTooOldEvents(1);
 		System.out.println();
 		eventManager.showEvents();
 		
