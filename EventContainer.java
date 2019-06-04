@@ -1,6 +1,6 @@
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Vector;
-
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 public class EventContainer {
 
@@ -79,4 +79,22 @@ public class EventContainer {
 			addEvent(eventID, newDayNumber, newMonthNumber, newYearNumber, newDescription);
 		java.util.Collections.sort(eventsList, new EventIDComparator());
 	}
+	
+	public void removeTooOldEvents(int dayNumber, int monthNumber, int yearNumber) {
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DATE, dayNumber);
+		calendar.set(Calendar.MONTH, monthNumber-1);
+		calendar.set(Calendar.YEAR, yearNumber);
+		
+		Date currentDate = calendar.getTime();
+		
+		for (int i = 0; i < eventsList.size(); i++)
+			if (currentDate.after(eventsList.get(i).toDate())) {
+				System.out.println("Usunieto stare wydarzenie");
+				deleteEvent(eventsList.get(i).getID());
+				i--; //je¿eli nie zatrzymamy iteracji nastêpuje pominiêcie elementów
+			}	
+	}
+	
 }

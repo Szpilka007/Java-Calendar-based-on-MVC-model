@@ -1,7 +1,6 @@
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;import java.util.Date;
 import java.util.Vector;
 
 public class EventManager {
@@ -48,6 +47,16 @@ public class EventManager {
 	public void modifyEvent(int eventID, int newDayNumber, int newMonthNumber, int newYearNumber, String newDescription) {
 		eventContainer.modifyEvent(eventID, newDayNumber, newMonthNumber, newYearNumber, newDescription);
 	}
+	
+	public void deleteEvent(int eventID) {
+		eventContainer.deleteEvent(eventID);
+	}
+	
+	public void removeTooOldEvents(int dayNumber, int monthNumber, int yearNumber) {
+		eventContainer.removeTooOldEvents(dayNumber, monthNumber, yearNumber);
+	}
+	
+	
 	
 
 }

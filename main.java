@@ -1,10 +1,6 @@
-import java.util.Vector;
 
 import javax.swing.*;
 public class main {
-	static String[] months = {"styczen", "luty", "marzec", "kwiecien", "maj",
-					   "czerwiec", "lipiec", "sierpien", "wrzesien",
-					   "pazdziernik", "listopad", "grudzien"};	
 	
 	public static void main(String[] args) {
 		EventManager eventManager = new EventManager();
@@ -24,6 +20,11 @@ public class main {
 		eventManager.showEvents();
 		
 		eventManager.modifyEvent(4, 12, 6, 2019, "Zmodyfikowane wydarzenie");
+		System.out.println();
+		eventManager.showEvents();
+		
+		System.out.println();
+		eventManager.removeTooOldEvents(9, 5, 2019);
 		System.out.println();
 		eventManager.showEvents();
 		
