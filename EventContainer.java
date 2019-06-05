@@ -1,32 +1,19 @@
-import java.io.File;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 public class EventContainer {
 
 	private Vector<Event> eventsList;
 	private XMLManager xmlManager;
+	private SQLManager sqlManager;
 	
 	public EventContainer() {
 		this.eventsList = new Vector<Event>();
 		this.xmlManager = new XMLManager();
+		this.sqlManager = new SQLManager();
 	}
 	
 	public Event getEvent(int eventID) {
@@ -107,9 +94,14 @@ public class EventContainer {
 	}
 	
 	public void modifyEvent(int eventID, int newDayNumber, int newMonthNumber, int newYearNumber,String newDescription) {
-		if (deleteEvent(eventID))
-			addEvent(eventID, newDayNumber, newMonthNumber, newYearNumber, newDescription);
-		java.util.Collections.sort(eventsList, new EventIDComparator());
+		if (getEvent(eventID) != null) {
+			getEvent(eventID).setDayNumber(newDayNumber);
+			getEvent(eventID).setMonthNumber(newMonthNumber);
+			getEvent(eventID).setYearNumber(newYearNumber);
+			getEvent(eventID).setDescription(newDescription);
+		}
+			
+
 	}
 	
 	public void removeTooOldEvents(int dayNumber, int monthNumber, int yearNumber) {
@@ -144,5 +136,24 @@ public class EventContainer {
 			
 	}
 	
+	public void addEventToSQL(int eventID) {
+		sqlManager.createEvent(getEvent(eventID));
+	}
+	
+	public void deleteEventFromSQL(int eventID) {
+		sqlManager.deleteEvent(getEvent(eventID));
+	}
+	
+	public void deleteAllEventsFromSQL() {
+		sqlManager.deleteAllEvents();
+	}
+	
+	public String allEventsFromSQLToString() {
+		return sqlManager.allEventsToString();
+	}
+	
+	public Vector<Event> getAllEventsFromSQL() {
+		return sqlManager.getAllEvents();
+	}
 	
 }

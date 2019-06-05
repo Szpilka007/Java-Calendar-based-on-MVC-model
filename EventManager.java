@@ -64,6 +64,25 @@ public class EventManager {
 		eventContainer.loadFromXMLFile(xmlFilePath);
 	}
 	
+	public void addEventToSQL(int eventID) {
+		eventContainer.addEventToSQL(eventID);
+	}
+	
+	public void deleteEventFromSQL(int eventID) {
+		eventContainer.deleteEventFromSQL(eventID);
+	}
+	
+	public void deleteAllEventsFromSQL() {
+		eventContainer.deleteAllEventsFromSQL();
+	}
+	
+	public String allEventsFromSQLToString() {
+		return eventContainer.allEventsFromSQLToString();
+	}
+	
+	public Vector<Event> getAllEventsFromSQL() {
+		return eventContainer.getAllEventsFromSQL();
+	}
 	
 	
 
