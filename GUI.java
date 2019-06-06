@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * param
@@ -21,7 +23,7 @@ public class GUI extends JFrame implements ActionListener {
     JTextArea infoAboutEvent;
     JLabel eventLook = new JLabel(actualDay);
     JFrame frame = new JFrame();
-    JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme,SaveToXMLfile,LoadFromXmlFile;
+    JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme,SaveToXMLfile,LoadFromXmlFile,SaveToBase,LoadToBase;
     JMenu Calendar, Events, Info,Settings;
     DefaultTableModel model;
     JLabel label = new JLabel();
@@ -29,6 +31,7 @@ public class GUI extends JFrame implements ActionListener {
     String month = cal.getDisplayName(java.util.Calendar.MONTH, java.util.Calendar.LONG, Locale.US);
     String des = "";
     EventManager eManager = new EventManager();
+    int Data;
 
     GUI() {
     	
@@ -69,6 +72,11 @@ public class GUI extends JFrame implements ActionListener {
         LoadFromXmlFile = new JMenuItem("Load from XML file");
         LoadFromXmlFile.addActionListener(this);
 
+        SaveToBase = new JMenuItem("Save To SQL Base");
+        SaveToBase.addActionListener(this);
+
+        LoadToBase = new JMenuItem("Load From SQL Base");
+        LoadToBase.addActionListener(this);
 
         menuBar = new JMenuBar();
 
@@ -88,6 +96,8 @@ public class GUI extends JFrame implements ActionListener {
         menuBar.add(Settings);
         Calendar.add(SaveToXMLfile);
         Calendar.add(LoadFromXmlFile);
+        Calendar.add(SaveToBase);
+        Calendar.add(LoadToBase);
 
 
         //TABELA
@@ -108,6 +118,7 @@ public class GUI extends JFrame implements ActionListener {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 
         table.setCellSelectionEnabled(true);
+
 
         ListSelectionModel select= table.getSelectionModel();
         select.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -146,15 +157,48 @@ public class GUI extends JFrame implements ActionListener {
 
 
         //wyswietlanie zdarzen pod data obok kalendarza
+
+        table.addMouseListener(new MouseAdapter() {
+                                   @Override
+                                   public void mouseClicked(final MouseEvent e) {
+                                       if (e.getClickCount() == 1) {
+                                           final JTable jTable = (JTable) e.getSource();
+                                           final int row = jTable.getSelectedRow();
+                                           final int column = jTable.getSelectedColumn();
+                                           final int valueInCell = (int) jTable.getValueAt(row, column);
+                                           String month = cal.getDisplayName(java.util.Calendar.MONTH, java.util.Calendar.LONG, Locale.US);
+                                           int intMonth = cal.get(java.util.Calendar.MONTH)+1;
+                                           int year = cal.get(java.util.Calendar.YEAR);
+                                           actualDay = String.valueOf(valueInCell)+" "+month+" "+ year ;
+                                           eventLook.setText(actualDay);
+                                           Vector<Event> ev = new Vector<Event>();
+                                           ev = eManager.getEventsOnDate(Data,intMonth,year);
+                                           System.out.println(ev.size());
+                                           des = "";
+                                           if(ev.size() != 0) {
+                                               for (int i = 0; i < ev.size(); i++)
+                                                   des += i+1+". "+ev.get(i).getDescription();
+                                           }
+                                           else
+                                               des = "No events";
+                                           Data=0;
+                                           infoAboutEvent.setText(des);
+                                       }
+                                   }
+                               });
+
+        /*
         select.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
-               int Data = 1 ;
+                Data = 1 ;
                 int[] row =table.getSelectedRows();
                 int[] columns = table.getSelectedColumns();
                 for (int i = 0; i < row.length; i++) {
                     for (int j = 0; j < columns.length; j++) {
-                        Data = (int)table.getValueAt(row[i], columns[j]);
+                        Data = (int)table.getModel().getValueAt(table.getSelectedRow(),table.getSelectedColumn());
+
                     } }
+                table.getValueAt(1,1);
                 String month = cal.getDisplayName(java.util.Calendar.MONTH, java.util.Calendar.LONG, Locale.US);
                 int intMonth = cal.get(java.util.Calendar.MONTH)+1;
                 int year = cal.get(java.util.Calendar.YEAR);
@@ -164,17 +208,23 @@ public class GUI extends JFrame implements ActionListener {
                 ev = eManager.getEventsOnDate(Data,intMonth,year);
                 System.out.println(ev.size());
                 des = "";
-                String newLine = System.getProperty("line.separator");
                 if(ev.size() != 0) {
                     for (int i = 0; i < ev.size(); i++)
                         des += i+1+". "+ev.get(i).getDescription();
                 }
                 else
                     des = "No events";
-
+                Data=0;
                 infoAboutEvent.setText(des);
+
+
             }
+
+
         });
+
+         */
+
 
         frame.add(pane);
         frame.add(infoAboutEvent);
@@ -428,6 +478,18 @@ public class GUI extends JFrame implements ActionListener {
                     ex.printStackTrace();
                 }
             }
+
+        }
+
+
+        //WCZYTYWANIE I ZAPISYWANIE DO BAZY DANYCH
+
+        if (e.getSource() == SaveToBase) {
+
+        }
+
+
+        if (e.getSource() == LoadToBase) {
 
         }
 

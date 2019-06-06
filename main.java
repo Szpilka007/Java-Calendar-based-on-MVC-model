@@ -6,7 +6,7 @@ public class main {
 		EventManager eventManager = new EventManager();
 		//JFrame.setDefaultLookAndFeelDecorated(true);
 		
-		//GUI gui = new GUI();
+		GUI gui = new GUI();
 		eventManager.addEvent(22, 6, 2019, "Pierwsze wydarzenie");
 		eventManager.addEvent(3, 7, 2019, "Pierwsze wydarzenie");
 		eventManager.addEvent(9, 5, 2019, "Pierwsze wydarzenie");
@@ -16,7 +16,7 @@ public class main {
 
 		eventManager.getEventsOnDate(9, 5, 2019);
 		System.out.println(eventManager.getEventsOnDate(9, 5, 2019).size());
-		eventManager.writeToXMLFile("D:\\Projekty\\Java\\Projekt\\xmlfile.xml");
+		//eventManager.writeToXMLFile("D:\\Projekty\\Java\\Projekt\\xmlfile.xml");
 		eventManager.modifyEvent(4, 12, 6, 2019, "Zmodyfikowane wydarzenie");
 		
 		/*
@@ -37,11 +37,11 @@ public class main {
 		
 		
 		
-		eventManager.addEventToSQL(0);
-		eventManager.addEventToSQL(1);
-		eventManager.addEventToSQL(2);
-		eventManager.addEventToSQL(3);
-		eventManager.addEventToSQL(4);
+		//eventManager.addEventToSQL(0);
+		//eventManager.addEventToSQL(1);
+		//eventManager.addEventToSQL(2);
+		//eventManager.addEventToSQL(3);
+		//eventManager.addEventToSQL(4);
 		
 		
 		//eventManager.deleteEventFromSQL(1);
@@ -53,9 +53,9 @@ public class main {
 		
 		//System.out.println(eventManager.allEventsFromSQLToString());
 		
-		for(Event e: eventManager.getAllEventsFromSQL()) {
-			System.out.println(e.toString());
-		}
+		//for(Event e: eventManager.getAllEventsFromSQL()) {
+			//System.out.println(e.toString());
+		//}
 		
 		
 		
