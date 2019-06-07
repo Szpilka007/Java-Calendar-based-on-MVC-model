@@ -7,14 +7,20 @@ public class Event {
 	private int monthNumber;
 	private int yearNumber;
 	private String description;
+	private String name;
 	
-	public Event(int iD, int dayNumber, int monthNumber, int yearNumber, String description) {
+	
+
+	
+
+	public Event(int iD, int dayNumber, int monthNumber, int yearNumber, String description, String name) {
 		super();
 		this.ID = iD;
 		this.dayNumber = dayNumber;
 		this.monthNumber = monthNumber;
 		this.yearNumber = yearNumber;
-		this.description = description+"\n";
+		this.description = description;
+		this.name = name;
 	}
 
 	public void setDayNumber(int dayNumber) {
@@ -31,6 +37,10 @@ public class Event {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getID() {
@@ -52,13 +62,18 @@ public class Event {
 	public String getDescription() {
 		return description;
 	}
-
-	public String toString() {
-		return "Event [getID()=" + getID() + ", getDayNumber()=" + getDayNumber() + ", getMonthNumber()="
-				+ getMonthNumber() + ", getYearNumber()=" + getYearNumber() + ", getDescription()=" + getDescription()
-				+ "]";
+	
+	public String getName() {
+		return this.name;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Event [ID=" + ID + ", dayNumber=" + dayNumber + ", monthNumber=" + monthNumber + ", yearNumber="
+				+ yearNumber + ", description=" + description + ", name=" + name + "]\n";
+	}
+
 	public Date toDate() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.DATE, this.dayNumber);

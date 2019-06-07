@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -172,7 +170,7 @@ public class GUI extends JFrame implements ActionListener {
                                            actualDay = String.valueOf(valueInCell)+" "+month+" "+ year ;
                                            eventLook.setText(actualDay);
                                            Vector<Event> ev = new Vector<Event>();
-                                           ev = eManager.getEventsOnDate(Data,intMonth,year);
+                                           ev = eManager.getEventsOnDate(valueInCell,intMonth,year);
                                            System.out.println(ev.size());
                                            des = "";
                                            if(ev.size() != 0) {

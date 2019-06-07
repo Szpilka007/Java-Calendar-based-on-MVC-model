@@ -27,9 +27,9 @@ public class EventManager {
 
 		
 	}
-	public void addEvent(int dayNumber, int monthNumber, int yearNumber, String description) {
+	public void addEvent(int dayNumber, int monthNumber, int yearNumber, String description, String name) {
 		if (checkEventDate(dayNumber, monthNumber, yearNumber)) {
-			eventContainer.addEvent(dayNumber, monthNumber, yearNumber, description);
+			eventContainer.addEvent(dayNumber, monthNumber, yearNumber, description, name);
 		}
 		else
 			System.err.println("Wprowadzona data wykracza poza zakres");
@@ -44,8 +44,8 @@ public class EventManager {
 		eventContainer.showEvents();
 	}
 	
-	public void modifyEvent(int eventID, int newDayNumber, int newMonthNumber, int newYearNumber, String newDescription) {
-		eventContainer.modifyEvent(eventID, newDayNumber, newMonthNumber, newYearNumber, newDescription);
+	public void modifyEvent(int eventID, int newDayNumber, int newMonthNumber, int newYearNumber, String newDescription, String newName) {
+		eventContainer.modifyEvent(eventID, newDayNumber, newMonthNumber, newYearNumber, newDescription, newName);
 	}
 	
 	public void deleteEvent(int eventID) {
@@ -72,18 +72,14 @@ public class EventManager {
 		eventContainer.deleteEventFromSQL(eventID);
 	}
 	
-	public void deleteAllEventsFromSQL() {
-		eventContainer.deleteAllEventsFromSQL();
+	
+	public void loadEventsFromSQL() {
+		eventContainer.loadEventsFromSQL();
 	}
 	
-	public String allEventsFromSQLToString() {
-		return eventContainer.allEventsFromSQLToString();
+	public void exportToCSV(String outlookPath) {
+		eventContainer.exportToCSV(outlookPath);
 	}
-	
-	public Vector<Event> getAllEventsFromSQL() {
-		return eventContainer.getAllEventsFromSQL();
-	}
-	
-	
+		
 
 }

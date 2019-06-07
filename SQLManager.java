@@ -35,30 +35,15 @@ public class SQLManager {
 	public void createEvent(Event event) {
 		connect();
 		
-		String querry = "insert into events values(?,?,?,?,?);";
-		int id = 0;
-		
-		try {
-			String sql = "select top 1 eventID from events order by eventID desc";
-			
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
-			
-			while (rs.next())
-				id = rs.getInt(1);
-			
-			id++;
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+		String querry = "insert into events values(?,?,?,?,?, ?);";
 		
 		try (PreparedStatement stmt = con.prepareStatement(querry)){
-			stmt.setLong(1, id);
+			stmt.setLong(1, event.getID());
 			stmt.setInt(2, event.getDayNumber());
 			stmt.setInt(3, event.getMonthNumber());
 			stmt.setInt(4, event.getYearNumber());
 			stmt.setString(5, event.getDescription());
+			stmt.setString(6, event.getName());
 			
 			stmt.executeUpdate();
 		}
@@ -73,13 +58,10 @@ public class SQLManager {
 	public void deleteEvent(Event event) {
 		connect();
 		
-		String querry = "delete from events where dayNumber = ? and monthNumber = ? and yearNumber = ? and descriptionString = ?;";
+		String querry = "delete from events where eventID = ?;";
 		
 		try (PreparedStatement stmt = con.prepareStatement(querry)){
-			stmt.setInt(1, event.getDayNumber());
-			stmt.setInt(2, event.getMonthNumber());
-			stmt.setInt(3, event.getYearNumber());
-			stmt.setString(4, event.getDescription());
+			stmt.setInt(1, event.getID());
 			
 			stmt.executeUpdate();
 		}
@@ -89,45 +71,6 @@ public class SQLManager {
 		
 		disconnect();
 		
-	}
-	
-	public void deleteAllEvents() {
-		connect();
-		
-		String querry = "delete from events;";
-		
-		try (PreparedStatement stmt = con.prepareStatement(querry)){
-			stmt.executeUpdate();
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		disconnect();
-	}
-	
-	public String allEventsToString() {
-		connect();
-		String querry = "select * from events;";
-		String allEventsToString = "";
-		try {
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(querry);
-			
-			while (rs.next())
-				allEventsToString += (String.valueOf(rs.getInt(1)) + " " 
-				+  String.valueOf(rs.getInt(2)) + " " 
-				+  String.valueOf(rs.getInt(3)) + " " 
-				+  String.valueOf(rs.getInt(4)) + " " 
-				+  rs.getString(5) + "\n");
-					
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		disconnect();
-		return allEventsToString;
 	}
 	
 	public Vector<Event> getAllEvents() {
@@ -142,7 +85,7 @@ public class SQLManager {
 			rs = stmt.executeQuery(querry);
 			
 			while (rs.next()) {
-				Event event = new Event(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
+				Event event = new Event(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(5));
 				events.add(event);
 			}
 			

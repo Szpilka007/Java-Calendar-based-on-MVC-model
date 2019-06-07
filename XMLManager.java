@@ -33,7 +33,8 @@ public class XMLManager {
 					Integer.parseInt(getValueOfNode("dayNumber", element)),
 					Integer.parseInt(getValueOfNode("monthNumber", element)),
 					Integer.parseInt(getValueOfNode("yearNumber", element)),
-					getValueOfNode("description", element));
+					getValueOfNode("description", element),
+					getValueOfNode("name", element));
 					return event;
 		}
 		return null;
@@ -74,6 +75,10 @@ public class XMLManager {
 				Element description = document.createElement("description");
 				description.appendChild(document.createTextNode(e.getDescription()));
 				event.appendChild(description);
+				
+				Element name = document.createElement("name");
+				name.appendChild(document.createTextNode(e.getName()));
+				event.appendChild(name);
 				
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
 				Transformer transformer = transformerFactory.newTransformer();

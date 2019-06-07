@@ -9,11 +9,13 @@ public class EventContainer {
 	private Vector<Event> eventsList;
 	private XMLManager xmlManager;
 	private SQLManager sqlManager;
+	private OutlookManager outlookManager;
 	
 	public EventContainer() {
 		this.eventsList = new Vector<Event>();
 		this.xmlManager = new XMLManager();
 		this.sqlManager = new SQLManager();
+		this.outlookManager = new OutlookManager();
 	}
 	
 	public Event getEvent(int eventID) {
@@ -48,15 +50,16 @@ public class EventContainer {
 		return eventsOnDate;
 	}
 	
-	public void addEvent(int id, int dayNumber, int monthNumber, int yearNumber, String description) {
+	public void addEvent(int id, int dayNumber, int monthNumber, int yearNumber, String description, String name) {
 		
-		Event event = new Event(id, dayNumber, monthNumber, yearNumber, description);
+		Event event = new Event(id, dayNumber, monthNumber, yearNumber, description, name);
 		
 		if (getEvent(event.getID()) != null) {
 			System.out.println("Istnieje wydarzenie o takim ID");
 			return;
 		}
 		eventsList.add(event);
+		addEventToSQL(id);
 		System.out.println("Zmodyfikowano wydarzenie");
 	}
 	
@@ -66,18 +69,21 @@ public class EventContainer {
 			return;
 		}
 		eventsList.add(event);
+		addEventToSQL(event.getID());
 		System.out.println("Dodano wydarzenie");			
 	}
 	
-	public void addEvent(int dayNumber, int monthNumber, int yearNumber, String description) {
+	public void addEvent(int dayNumber, int monthNumber, int yearNumber, String description, String name) {
 		int eventID = getMinimumEventID();
-		Event event = new Event(eventID ,dayNumber, monthNumber, yearNumber, description);
+		Event event = new Event(eventID ,dayNumber, monthNumber, yearNumber, description, name);
 		eventsList.add(event);
+		addEventToSQL(eventID);
 		System.out.println("Dodano wydarzenie");
 	}
 	
 	public boolean deleteEvent(int eventID) {
 		if (getEvent(eventID) instanceof Event) {
+			deleteEventFromSQL(eventID);
 			eventsList.remove(getEvent(eventID));
 			return true;
 		}
@@ -93,12 +99,15 @@ public class EventContainer {
 			System.out.println(e.toString());
 	}
 	
-	public void modifyEvent(int eventID, int newDayNumber, int newMonthNumber, int newYearNumber,String newDescription) {
+	public void modifyEvent(int eventID, int newDayNumber, int newMonthNumber, int newYearNumber,String newDescription, String newName) {
 		if (getEvent(eventID) != null) {
 			getEvent(eventID).setDayNumber(newDayNumber);
 			getEvent(eventID).setMonthNumber(newMonthNumber);
 			getEvent(eventID).setYearNumber(newYearNumber);
 			getEvent(eventID).setDescription(newDescription);
+			getEvent(eventID).setName(newName);
+			deleteEventFromSQL(eventID);
+			addEventToSQL(eventID);
 		}
 			
 
@@ -116,6 +125,7 @@ public class EventContainer {
 		for (int i = 0; i < eventsList.size(); i++)
 			if (currentDate.after(eventsList.get(i).toDate())) {
 				System.out.println("Usunieto stare wydarzenie");
+				deleteEventFromSQL(eventsList.get(i).getID());
 				deleteEvent(eventsList.get(i).getID());
 				i--; //je¿eli nie zatrzymamy iteracji nastêpuje pominiêcie elementów
 			}	
@@ -144,16 +154,13 @@ public class EventContainer {
 		sqlManager.deleteEvent(getEvent(eventID));
 	}
 	
-	public void deleteAllEventsFromSQL() {
-		sqlManager.deleteAllEvents();
+	public void loadEventsFromSQL() {
+		for (Event e: sqlManager.getAllEvents())
+			eventsList.add(e);
 	}
 	
-	public String allEventsFromSQLToString() {
-		return sqlManager.allEventsToString();
-	}
-	
-	public Vector<Event> getAllEventsFromSQL() {
-		return sqlManager.getAllEvents();
+	public void exportToCSV(String outlookPath) {
+		outlookManager.exportToCSV(getEventsList(), outlookPath);
 	}
 	
 }
