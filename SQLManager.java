@@ -35,7 +35,7 @@ public class SQLManager {
 	public void createEvent(Event event) {
 		connect();
 		
-		String querry = "insert into events values(?,?,?,?,?, ?);";
+		String querry = "insert into events values(?,?,?,?,?,?);";
 		
 		try (PreparedStatement stmt = con.prepareStatement(querry)){
 			stmt.setLong(1, event.getID());
@@ -58,7 +58,7 @@ public class SQLManager {
 	public void deleteEvent(Event event) {
 		connect();
 		
-		String querry = "delete from events where eventID = ?;";
+		String querry = "delete from events where ID = ?;";
 		
 		try (PreparedStatement stmt = con.prepareStatement(querry)){
 			stmt.setInt(1, event.getID());
@@ -85,7 +85,7 @@ public class SQLManager {
 			rs = stmt.executeQuery(querry);
 			
 			while (rs.next()) {
-				Event event = new Event(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(5));
+				Event event = new Event(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6));
 				events.add(event);
 			}
 			
@@ -93,6 +93,8 @@ public class SQLManager {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
+		for(Event e: events)
+			System.out.println(e.toString());
 		
 		disconnect();
 		

@@ -1,16 +1,21 @@
-
 import javax.swing.*;
 public class main {
 	
 	public static void main(String[] args) {
-		EventManager eventManager = new EventManager();
-		JFrame.setDefaultLookAndFeelDecorated(true);
+		GUI gui;
+		TUI tui;
+		if (args.length == 0) {
+			JFrame.setDefaultLookAndFeelDecorated(true);
+			gui = new GUI();
+		}
+		else {
+			System.out.println("W³¹czam tryb tekstowy");
+			tui = new TUI();
+		}
+			
 		
-		GUI gui = new GUI();;
-		eventManager.loadEventsFromSQL();
-		eventManager.showEvents();
+						
 
-		
 	}
 
 }

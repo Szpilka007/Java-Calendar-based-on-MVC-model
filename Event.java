@@ -68,10 +68,11 @@ public class Event {
 	}
 	
 	
+
 	@Override
 	public String toString() {
 		return "Event [ID=" + ID + ", dayNumber=" + dayNumber + ", monthNumber=" + monthNumber + ", yearNumber="
-				+ yearNumber + ", description=" + description + ", name=" + name + "]\n";
+				+ yearNumber + ", description=" + description + ", name=" + name + "]";
 	}
 
 	public Date toDate() {

@@ -18,7 +18,7 @@ public class GUI extends JFrame implements ActionListener {
     JMenuBar menuBar;
     String actualDay;
     JLabel actualMonth= new JLabel();
-    JLabel infoAboutEvent1,infoAboutEvent2,infoAboutEvent3,infoAboutEvent4,infoAboutEvent5;
+    JLabel infoAboutEvent;
     JLabel eventLook = new JLabel(actualDay);
     JFrame frame = new JFrame();
     JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme,SaveToXMLfile,LoadFromXmlFile,LoadToBase,ExportToCsv,RemoveEV,ModifyEv;
@@ -27,13 +27,13 @@ public class GUI extends JFrame implements ActionListener {
     JLabel label = new JLabel();
     Calendar cal = new GregorianCalendar();
     String month = cal.getDisplayName(java.util.Calendar.MONTH, java.util.Calendar.LONG, Locale.US);
-    String[] des = new String[6];
+    String des = "";
     EventManager eManager = new EventManager();
     int Data;
 
     GUI() {
     	
-
+    	eManager.loadEventsFromSQL();
         frame.setLayout(null);//using no layout managers
         frame.setSize(1200, 600);
         frame.setVisible(true);//making the frame visible
@@ -135,33 +135,10 @@ public class GUI extends JFrame implements ActionListener {
 
         //Informacje o evencie tzw szczegoly;
 
-        infoAboutEvent1 = new JLabel();
-        infoAboutEvent2 = new JLabel();
-        infoAboutEvent3 = new JLabel();
-        infoAboutEvent4 = new JLabel();
-        infoAboutEvent5 = new JLabel();
-
-        infoAboutEvent1.setBounds(900,-200,250,600);
-        infoAboutEvent1.setFont(new Font("Serif", Font.LAYOUT_LEFT_TO_RIGHT, 15));
-        infoAboutEvent1.setText(des[0]);
-
-        infoAboutEvent2.setBounds(900,-150,250,600);
-        infoAboutEvent2.setFont(new Font("Serif", Font.LAYOUT_LEFT_TO_RIGHT, 15));
-        infoAboutEvent2.setText(des[1]);
-
-        infoAboutEvent3.setBounds(900,-100,250,600);
-        infoAboutEvent3.setFont(new Font("Serif", Font.LAYOUT_LEFT_TO_RIGHT, 15));
-        infoAboutEvent3.setText(des[2]);
-
-        infoAboutEvent4.setBounds(900,-50,250,600);
-        infoAboutEvent4.setFont(new Font("Serif", Font.LAYOUT_LEFT_TO_RIGHT, 15));
-        infoAboutEvent4.setText(des[3]);
-
-        infoAboutEvent5.setBounds(900,0,250,600);
-        infoAboutEvent5.setFont(new Font("Serif", Font.LAYOUT_LEFT_TO_RIGHT, 15));
-        infoAboutEvent5.setText(des[4]);
-
-
+        infoAboutEvent = new JLabel();
+        infoAboutEvent.setBounds(900,30,250,190);
+        infoAboutEvent.setFont(new Font("Serif", Font.PLAIN, 28));
+        infoAboutEvent.setText(des);
 
 
 
@@ -204,22 +181,14 @@ public class GUI extends JFrame implements ActionListener {
                         Vector<Event> ev = new Vector<Event>();
                         ev = eManager.getEventsOnDate(valueInCell, intMonth, year);
                         System.out.println(ev.size());
+                        des = "";
                         if (ev.size() != 0) {
                             for (int i = 0; i < ev.size(); i++)
-                                des[i] = i + 1 + ". " + ev.get(i).getName() + " " + " -- " + ev.get(i).getDescription();
+                                des += i + 1 + " " + ev.get(i).getName() + " " + " -- " + ev.get(i).getDescription();
                         } else
-                        {
-                            for(int i =0; i<6;i++)
-                                des[i] = "";
-                            des[0]= "No events";
-                        }
-
-                        infoAboutEvent1.setText(des[0]);
-                        infoAboutEvent2.setText(des[1]);
-                        infoAboutEvent3.setText(des[2]);
-                        infoAboutEvent4.setText(des[3]);
-                        infoAboutEvent5.setText(des[4]);
+                            des = "No events";
                         Data = 0;
+                        infoAboutEvent.setText(des);
                     }
                     catch(NullPointerException bla)
                     {System.out.println("Error");}
@@ -228,11 +197,7 @@ public class GUI extends JFrame implements ActionListener {
         });
 
         frame.add(pane);
-        frame.add(infoAboutEvent1);
-        frame.add(infoAboutEvent2);
-        frame.add(infoAboutEvent3);
-        frame.add(infoAboutEvent4);
-        frame.add(infoAboutEvent5);
+        frame.add(infoAboutEvent);
         frame.add(eventLook);
         frame.add(actualMonth);
         frame.add(nextMonth);
@@ -374,6 +339,7 @@ public class GUI extends JFrame implements ActionListener {
                         String m = month.getText();
                         String y = year.getText();
                         eManager.deleteEve(n,Integer.parseInt(d),Integer.parseInt(m),Integer.parseInt(y));
+
                     }catch(NumberFormatException e)
                     {
                         JFrame f = new JFrame();
@@ -447,7 +413,7 @@ public class GUI extends JFrame implements ActionListener {
                         String m = month.getText();
                         String y = year.getText();
                         eManager.removeTooOldEvents(Integer.parseInt(d), Integer.parseInt(m), Integer.parseInt(y));
-
+                        System.out.println("BO");
                     }
                     catch(NumberFormatException e)
                     {
@@ -516,9 +482,9 @@ public class GUI extends JFrame implements ActionListener {
                         String m = month.getText();
                         String y = year.getText();
                         //Modyfikacja wydarzenia
-
+                        System.out.println(n + " " + d + " " + m + " " + y);
                         Event e = eManager.getEvent(n,Integer.parseInt(d),Integer.parseInt(m),Integer.parseInt(y));
-
+                        eManager.showEvents();
 
                         JFrame add = new JFrame();
                         add.setBounds(100,200,500,300);
@@ -541,17 +507,19 @@ public class GUI extends JFrame implements ActionListener {
                         JTextArea year = new JTextArea();
                         JTextArea description = new JTextArea();
 
-                        Name.setText("New name");
-                        day.setText("New day");
-                        month.setText("New month");
-                        year.setText("New year");
-                        description.setText("New description");
+                        Name.setText(e.getName());
+                        day.setText(String.valueOf(e.getDayNumber()));
+                        month.setText(String.valueOf(e.getMonthNumber()));
+                        year.setText(String.valueOf(e.getYearNumber()));
+                        description.setText(d);
 
                         Name.setBounds(110,18,300,20);
                         day.setBounds(110,48,300,20);
                         month.setBounds(110,78,300,20);
                         year.setBounds(110,108,300,20);
                         description.setBounds(110,138,300,60);
+
+                        eManager.deleteEve(e.getName(),e.getDayNumber(),e.getMonthNumber(),e.getYearNumber());
 
                         JButton addEvent = new JButton("Modify event");
                         addEvent.setBounds(300,220,100,30);
@@ -582,7 +550,7 @@ public class GUI extends JFrame implements ActionListener {
                                     String m = month.getText();
                                     String y = year.getText();
                                     String de = description.getText();
-                                    eManager.modifyEvent(e.getID(),Integer.parseInt(d), Integer.parseInt(m), Integer.parseInt(y), de, n);
+                                    eManager.addEvent(Integer.parseInt(d), Integer.parseInt(m), Integer.parseInt(y), de, n);
 
                                 }catch(NumberFormatException e)
                                 {
