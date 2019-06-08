@@ -6,9 +6,9 @@ public class main {
 		EventManager eventManager = new EventManager();
 		//JFrame.setDefaultLookAndFeelDecorated(true);
 		
-		//GUI gui = new GUI();;
-		eventManager.loadEventsFromSQL();
-		eventManager.showEvents();
+		GUI gui = new GUI();;
+		//eventManager.loadEventsFromSQL();
+		//eventManager.showEvents();
 
 		
 		

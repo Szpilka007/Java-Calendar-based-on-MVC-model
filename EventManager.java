@@ -39,6 +39,10 @@ public class EventManager {
 	public Vector<Event> getEventsOnDate(int dayNumber, int monthNumber, int yearNumber) {
 		return eventContainer.getEventsOnDate(dayNumber, monthNumber, yearNumber);
 	}
+
+	public Event getEvent(String name,int dayNumber, int monthNumber, int yearNumber){
+		return eventContainer.getEvent(name,dayNumber,monthNumber,yearNumber);
+	}
 	
 	public void showEvents() {
 		eventContainer.showEvents();
@@ -51,6 +55,8 @@ public class EventManager {
 	public void deleteEvent(int eventID) {
 		eventContainer.deleteEvent(eventID);
 	}
+
+	public void deleteEve(String name, int Day, int month, int year) { eventContainer.deleteEv(name,Day,month,year);}
 	
 	public void removeTooOldEvents(int dayNumber, int numberOfMonths, int yearNumber) {
 		eventContainer.removeTooOldEvents(dayNumber, numberOfMonths, yearNumber);
