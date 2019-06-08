@@ -484,7 +484,7 @@ public class GUI extends JFrame implements ActionListener {
                         //Modyfikacja wydarzenia
 
                         Event e = eManager.getEvent(n,Integer.parseInt(d),Integer.parseInt(m),Integer.parseInt(y));
-                        System.out.println(e.toString());
+
 
                         JFrame add = new JFrame();
                         add.setBounds(100,200,500,300);
@@ -507,19 +507,17 @@ public class GUI extends JFrame implements ActionListener {
                         JTextArea year = new JTextArea();
                         JTextArea description = new JTextArea();
 
-                        Name.setText(e.getName());
-                        day.setText(String.valueOf(e.getDayNumber()));
-                        month.setText(String.valueOf(e.getMonthNumber()));
-                        year.setText(String.valueOf(e.getYearNumber()));
-                        description.setText(d);
+                        Name.setText("New name");
+                        day.setText("New day");
+                        month.setText("New month");
+                        year.setText("New year");
+                        description.setText("New description");
 
                         Name.setBounds(110,18,300,20);
                         day.setBounds(110,48,300,20);
                         month.setBounds(110,78,300,20);
                         year.setBounds(110,108,300,20);
                         description.setBounds(110,138,300,60);
-
-                        eManager.deleteEve(e.getName(),e.getDayNumber(),e.getMonthNumber(),e.getYearNumber());
 
                         JButton addEvent = new JButton("Modify event");
                         addEvent.setBounds(300,220,100,30);
@@ -550,7 +548,7 @@ public class GUI extends JFrame implements ActionListener {
                                     String m = month.getText();
                                     String y = year.getText();
                                     String de = description.getText();
-                                    eManager.addEvent(Integer.parseInt(d), Integer.parseInt(m), Integer.parseInt(y), de, n);
+                                    eManager.modifyEvent(e.getID(),Integer.parseInt(d), Integer.parseInt(m), Integer.parseInt(y), de, n);
 
                                 }catch(NumberFormatException e)
                                 {
