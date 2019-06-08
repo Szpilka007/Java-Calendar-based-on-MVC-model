@@ -189,4 +189,13 @@ public class EventContainer {
 		outlookManager.exportToCSV(getEventsList(), outlookPath);
 	}
 	
+	public Vector<Event> getFilterEventsWithString(String filtr) {
+		Vector<Event> filteredEvents = new Vector<Event>();
+		for (Event e: eventsList)
+			if (e.getName().contains(filtr))
+				filteredEvents.add(e);
+		
+		return filteredEvents;
+	}
+	
 }

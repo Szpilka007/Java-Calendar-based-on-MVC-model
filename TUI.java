@@ -102,6 +102,16 @@ public class TUI {
 		eventManager.exportToCSV(path);
 	}
 	
+	private void filteredEvents() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("SHOW FILTERED EVENTS: ");	
+		System.out.println("Insert string that might be contained in a name of event");
+		System.out.println();
+		String name = input.next();
+		for (Event e:eventManager.getFilterEventsWithString(name))
+			System.out.println(e.toString());
+	}
+	
 	TUI() {
 		eventManager = new EventManager();
 		scanner = new Scanner(System.in);
@@ -118,7 +128,8 @@ public class TUI {
 							 + "7  | Load from .xml File\n"
 							 + "8  | Save to .csv\n"
 							 + "9  | About program\n"
-							 + "10 | Exit\n");
+							 + "10 | Show events filtered\n"
+							 + "11 | Exit\n");
 			int option = scanner.nextInt();
 			
 			if(option == 1)
@@ -148,7 +159,10 @@ public class TUI {
 			else if(option == 9)
 				System.out.println("Program made by Jakub Guzek and Adam Krzanowski");
 			
-			else if(option == 10)
+			else if (option == 10)
+				filteredEvents();
+			
+			else if(option == 11)
 				System.exit(0);		
 			
 			else

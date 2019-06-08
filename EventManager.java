@@ -92,6 +92,10 @@ public class EventManager {
 	public void exportToCSV(String outlookPath) {
 		eventContainer.exportToCSV(outlookPath);
 	}
+	
+	public Vector<Event> getFilterEventsWithString(String filtr) {
+		return eventContainer.getFilterEventsWithString(filtr);
+	}
 		
 
 }
