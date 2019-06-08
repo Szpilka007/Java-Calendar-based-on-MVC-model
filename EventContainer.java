@@ -94,15 +94,18 @@ public class EventContainer {
 		}			
 	}
 
-	public void deleteEv(String name, int day, int month, int year){
+	public boolean deleteEv(String name, int day, int month, int year){
+		System.out.println(eventsList.size());
 		for(Event e:eventsList)
 		{
 			if(name == e.getName() && day == e.getDayNumber() && month == e.getMonthNumber() && year == e.getYearNumber())
 			{
 				deleteEventFromSQL(e.getID());
 				deleteEvent(e.getID());
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public Event getEvent(String name, int day, int month, int year){
@@ -150,7 +153,7 @@ public class EventContainer {
 				System.out.println("Usunieto stare wydarzenie");
 				deleteEventFromSQL(eventsList.get(i).getID());
 				deleteEvent(eventsList.get(i).getID());
-				i--; //je�eli nie zatrzymamy iteracji nast�puje pomini�cie element�w
+				i--;
 			}	
 	}
 	

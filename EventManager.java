@@ -56,7 +56,13 @@ public class EventManager {
 		eventContainer.deleteEvent(eventID);
 	}
 
-	public void deleteEve(String name, int Day, int month, int year) { eventContainer.deleteEv(name,Day,month,year);}
+	public void deleteEve(String name, int Day, int month, int year) { 
+		if(eventContainer.deleteEv(name,Day,month,year))
+			System.out.println("Usuniêto wydarzenie");
+		
+		else
+			System.out.println("Nie ma takiego wydarzenia");
+	}
 	
 	public void removeTooOldEvents(int dayNumber, int numberOfMonths, int yearNumber) {
 		eventContainer.removeTooOldEvents(dayNumber, numberOfMonths, yearNumber);
