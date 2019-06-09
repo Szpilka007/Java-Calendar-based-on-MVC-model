@@ -21,7 +21,7 @@ public class GUI extends JFrame implements ActionListener {
     JLabel infoAboutEvent;
     JLabel eventLook = new JLabel(actualDay);
     JFrame frame = new JFrame();
-    JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme,SaveToXMLfile,LoadFromXmlFile,LoadToBase,ExportToCsv,RemoveEV,ModifyEv,FilterEvent;
+    JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme,SaveToXMLfile,LoadFromXmlFile,LoadToBase,ExportToCsv,RemoveEV,ModifyEv,FilterEvent,Reminders;
     JMenu Calendar, Events, Info,Settings;
     DefaultTableModel model;
     JLabel label = new JLabel();
@@ -70,6 +70,9 @@ public class GUI extends JFrame implements ActionListener {
         AboutProgram = new JMenuItem("About Program");
         AboutProgram.addActionListener(this);
 
+        Reminders = new JMenuItem("Reminders");
+        Reminders.addActionListener(this);
+
         Theme = new JMenuItem("Theme");
         Theme.addActionListener(this);
 
@@ -108,6 +111,7 @@ public class GUI extends JFrame implements ActionListener {
         Calendar.add(LoadFromXmlFile);
         Calendar.add(LoadToBase);
         Calendar.add(ExportToCsv);
+        Events.add(Reminders);
 
 
         //TABELA
@@ -210,7 +214,10 @@ public class GUI extends JFrame implements ActionListener {
         frame.setJMenuBar(menuBar);
         frame.revalidate();
         frame.repaint();
+
+
         this.updateMonth();
+        Remainders();
 
     }
 
@@ -363,6 +370,10 @@ public class GUI extends JFrame implements ActionListener {
             JFrame f = new JFrame();
             JOptionPane.showMessageDialog(f, "It is program which has written " +
                     "by Adam Krzanowski and Jakub Guzek.");
+        }
+
+        if (e.getSource() == Reminders) {
+            Remainders();
         }
 
 
@@ -778,6 +789,21 @@ public class GUI extends JFrame implements ActionListener {
                 }
             }
         }
+
+    }
+
+    //metoda wysweitlajaca prypomniena
+    public void Remainders(){
+
+        Vector<Event> e = new Vector<Event>();
+       // tutaj pobranie wydarzen
+        String des = "Events in future week:\n";
+        for(int i =0; i<e.size(); i++)
+        {
+            des += e.get(i).getDayNumber()+"--"+e.get(i).getMonthNumber()+"--"+e.get(i).getYearNumber()+"  "+e.get(i).getName()+"  "+e.get(i).getDescription()+"\n";
+        }
+        JFrame f = new JFrame();
+        JOptionPane.showMessageDialog(f,des);
 
     }
 
