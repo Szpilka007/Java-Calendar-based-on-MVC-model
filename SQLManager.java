@@ -93,8 +93,6 @@ public class SQLManager {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		for(Event e: events)
-			System.out.println(e.toString());
 		
 		disconnect();
 		

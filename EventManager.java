@@ -56,8 +56,8 @@ public class EventManager {
 		eventContainer.deleteEvent(eventID);
 	}
 
-	public void deleteEve(String name, int Day, int month, int year) { 
-		if(eventContainer.deleteEv(name,Day,month,year))
+	public void deleteEve(String name, int day, int month, int year) { 
+		if(eventContainer.deleteEv(name,day,month,year))
 			System.out.println("Usuniêto wydarzenie");
 		
 		else
@@ -95,6 +95,10 @@ public class EventManager {
 	
 	public Vector<Event> getFilterEventsWithString(String filtr) {
 		return eventContainer.getFilterEventsWithString(filtr);
+	}
+	
+	public Vector<Event> getEventsInNextWeek() {
+		return eventContainer.getEventsInNextWeek();
 	}
 		
 

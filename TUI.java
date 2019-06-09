@@ -110,13 +110,28 @@ public class TUI {
 		String name = input.next();
 		for (Event e:eventManager.getFilterEventsWithString(name))
 			System.out.println(e.toString());
+		
+		System.out.println("ENTER ANYTHING TO CONTINUE");
+		String press = input.next();
+	}
+	
+	private void eventsInNextWeek() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("EVENTS IN NEXT WEEK");
+		for (Event e: eventManager.getEventsInNextWeek())
+			System.out.println(e.toString());
+		
+		System.out.println("ENTER ANYTHING TO CONTINUE");
+		String press = input.next();
+		
 	}
 	
 	TUI() {
 		eventManager = new EventManager();
 		scanner = new Scanner(System.in);
-		
+			
 		eventManager.loadEventsFromSQL();
+		eventsInNextWeek();
 		for(;;) {
 			System.out.println("OPTIONS: \n"
 							 + "1  | Show events\n"
@@ -129,7 +144,8 @@ public class TUI {
 							 + "8  | Save to .csv\n"
 							 + "9  | About program\n"
 							 + "10 | Show events filtered\n"
-							 + "11 | Exit\n");
+							 + "11 | Events in next week\n"
+							 + "12 | Exit\n");
 			int option = scanner.nextInt();
 			
 			if(option == 1)
@@ -162,7 +178,10 @@ public class TUI {
 			else if (option == 10)
 				filteredEvents();
 			
-			else if(option == 11)
+			else if (option == 11)
+				eventsInNextWeek();
+			
+			else if(option == 12)
 				System.exit(0);		
 			
 			else
