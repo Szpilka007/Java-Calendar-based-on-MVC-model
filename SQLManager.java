@@ -11,6 +11,9 @@ public class SQLManager {
 	private Statement stmt = null;
 	private ResultSet rs = null;
 	
+	/**
+	 * Tries to connect to SQL server
+	 */
 	private void connect() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -21,6 +24,9 @@ public class SQLManager {
 		}
 	}
 	
+	/**
+	 * Tries to disconnect from SQL server
+	 */
 	private void disconnect() {
 		if (con != null) {
 			try {
@@ -32,6 +38,10 @@ public class SQLManager {
 		}
 	}
 	
+	/**
+	 * Adds Event to SQL database
+	 * @param event Event to add
+	 */
 	public void createEvent(Event event) {
 		connect();
 		
@@ -55,6 +65,10 @@ public class SQLManager {
 		disconnect();
 	}
 	
+	/**
+	 * Deletes event from SQL database
+	 * @param event Event to delete
+	 */
 	public void deleteEvent(Event event) {
 		connect();
 		
@@ -73,6 +87,10 @@ public class SQLManager {
 		
 	}
 	
+	/**
+	 * Saves all Events from SQL server into vector
+	 * @return Vector of Events
+	 */
 	public Vector<Event> getAllEvents() {
 		Vector<Event> events = new Vector<Event>();
 		

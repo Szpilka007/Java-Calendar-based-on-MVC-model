@@ -19,12 +19,23 @@ import org.xml.sax.SAXException;
 
 public class XMLManager {
 	
+	/**
+	 * Gets value of the node
+	 * @param tag String name of the node to refer from the XML file
+	 * @param element Element to take value from
+	 * @return String value of the node
+	 */
 	private String getValueOfNode(String tag, Element element) {
 		NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
 		Node node = (Node) nodeList.item(0);
 		return node.getNodeValue();
 	}
 	
+	/**
+	 * Create event from node
+	 * @param node Node to take event from
+	 * @return Event 
+	 */
 	private Event getEvent(Node node) {
 		if (node.getNodeType() == Node.ELEMENT_NODE) {
 			Element element = (Element) node;
@@ -43,6 +54,11 @@ public class XMLManager {
 		
 	}
 	
+	/**
+	 * Saves events to .xml file
+	 * @param eventsList Vector of Events to write to file
+	 * @param xmlFilePath Path of the new file
+	 */
 	public void writeToXMLFile(Vector<Event> eventsList, String xmlFilePath) {
 		try {
 			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
@@ -95,7 +111,12 @@ public class XMLManager {
         }
 		
 	}
-	
+	/**
+	 * Loads Events from .xml file to Vector
+	 * @param eventsList Vector where events will be loaded
+	 * @param xmlFilePath Path to .xml file
+	 * @return Vector of Events
+	 */
 	public Vector<Event> loadFromXMLFile(Vector<Event> eventsList, String xmlFilePath) {
 		
 		try {

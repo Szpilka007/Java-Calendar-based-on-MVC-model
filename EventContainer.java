@@ -11,6 +11,9 @@ public class EventContainer {
 	private SQLManager sqlManager;
 	private OutlookManager outlookManager;
 	
+	/**
+	 * Creates new EventContainer
+	 */
 	public EventContainer() {
 		this.eventsList = new Vector<Event>();
 		this.xmlManager = new XMLManager();
@@ -18,6 +21,11 @@ public class EventContainer {
 		this.outlookManager = new OutlookManager();
 	}
 	
+	/**
+	 * Get event based on the ID
+	 * @param eventID int ID of the event
+	 * @return Event or null if not found
+	 */
 	public Event getEvent(int eventID) {
 		for (Event e: eventsList) 
 			if (e.getID() == eventID)
@@ -27,10 +35,18 @@ public class EventContainer {
 		
 	}
 	
+	/**
+	 * Returns Vector of events
+	 * @return Vector of Events
+	 */
 	public Vector<Event> getEventsList() {
 		return eventsList;
 	}
 	
+	/**
+	 * Get the minimum ID of the events + 1
+	 * @return int eventID
+	 */
 	public int getMinimumEventID() {
 		if (eventsList.size() == 0)
 			return 0;
@@ -41,6 +57,13 @@ public class EventContainer {
 		}
 	}
 	
+	/**
+	 * Gets event on day
+	 * @param dayNumber int Day of the event
+	 * @param monthNumber int Month of the event
+	 * @param yearNumber int Year of the event
+	 * @return Event
+	 */
 	public Vector<Event> getEventsOnDate(int dayNumber, int monthNumber, int yearNumber) {
 		Vector<Event> eventsOnDate = new Vector<Event>();
 		for (Event e:eventsList)
@@ -50,6 +73,15 @@ public class EventContainer {
 		return eventsOnDate;
 	}
 	
+	/**
+	 * Add new Event
+	 * @param id int ID of the event
+	 * @param dayNumber int Day of the event
+	 * @param monthNumber int Month of the event
+	 * @param yearNumber int Year of the event
+	 * @param description String description of the event
+	 * @param name String name of the event
+	 */
 	public void addEvent(int id, int dayNumber, int monthNumber, int yearNumber, String description, String name) {
 		
 		Event event = new Event(id, dayNumber, monthNumber, yearNumber, description, name);
@@ -63,6 +95,10 @@ public class EventContainer {
 		System.out.println("Zmodyfikowano wydarzenie");
 	}
 	
+	/**
+	 * Adds event
+	 * @param event Event to add
+	 */
 	public void addEvent(Event event) {
 		if (getEvent(event.getID()) != null) {
 			System.out.println("Istnieje wydarzenie o takim ID");
@@ -73,6 +109,14 @@ public class EventContainer {
 		System.out.println("Dodano wydarzenie");			
 	}
 	
+	/**
+	 * Adds event
+	 * @param dayNumber int Day of the event
+	 * @param monthNumber int Month of the event
+	 * @param yearNumber int Year of the event
+	 * @param description String description of the event
+	 * @param name String name of the event
+	 */
 	public void addEvent(int dayNumber, int monthNumber, int yearNumber, String description, String name) {
 		int eventID = getMinimumEventID();
 		Event event = new Event(eventID ,dayNumber, monthNumber, yearNumber, description, name);
@@ -81,6 +125,11 @@ public class EventContainer {
 		System.out.println("Dodano wydarzenie");
 	}
 	
+	/**
+	 * Deletes event based on the ID
+	 * @param eventID int ID of searched event
+	 * @return true if deleted, false if not
+	 */
 	public boolean deleteEvent(int eventID) {
 		if (getEvent(eventID) instanceof Event) {
 			deleteEventFromSQL(eventID);
@@ -94,6 +143,14 @@ public class EventContainer {
 		}			
 	}
 
+	/**
+	 * Delete event based on name and date
+	 * @param name String name of the event
+	 * @param day int Day of the event
+	 * @param month int Month of the event
+	 * @param year int Year of the event
+	 * @return true if deleted, false if not
+	 */
 	public boolean deleteEv(String name, int day, int month, int year){
 		for(Event e:eventsList)	{
 			if(name == e.getName() && day == e.getDayNumber() && month == e.getMonthNumber() && year == e.getYearNumber())	{
@@ -107,6 +164,14 @@ public class EventContainer {
 		return false;
 	}
 	
+	/**
+	 * Get event based on the name and date
+	 * @param name String name of the event
+	 * @param day int Day of the event
+	 * @param month int Month of the event
+	 * @param year int Year of the event
+	 * @return Event or null
+	 */
 	public Event getEvent(String name, int day, int month, int year){
 		for(Event e:eventsList)
 		{
@@ -118,12 +183,23 @@ public class EventContainer {
 		return null;
 	}
 
-
+	/**
+	 * Shows events through toString method
+	 */
 	public void showEvents() {
 		for (Event e:eventsList)
 			System.out.println(e.toString());
 	}
 	
+	/**
+	 * Modify event
+	 * @param eventID int ID of the event
+	 * @param newDayNumber int New Day of the event
+	 * @param newMonthNumber int New Month of the event
+	 * @param newYearNumber int New Year of the event
+	 * @param newDescription String New Description of the event
+	 * @param newName String New Name of the event
+	 */
 	public void modifyEvent(int eventID, int newDayNumber, int newMonthNumber, int newYearNumber,String newDescription, String newName) {
 		if (getEvent(eventID) != null) {
 			getEvent(eventID).setDayNumber(newDayNumber);
@@ -138,6 +214,12 @@ public class EventContainer {
 
 	}
 	
+	/**
+	 * Remove events before given date
+	 * @param dayNumber int Day of the Date
+	 * @param monthNumber int Month of the Date
+	 * @param yearNumber int Year of the Date
+	 */
 	public void removeTooOldEvents(int dayNumber, int monthNumber, int yearNumber) {
 		
 		Calendar calendar = Calendar.getInstance();
@@ -156,12 +238,19 @@ public class EventContainer {
 			}	
 	}
 	
+	/**
+	 * Write events to .xml file
+	 * @param xmlFilePath String path of the file
+	 */
 	public void writeToXMLFile(String xmlFilePath) {
 		xmlManager.writeToXMLFile(getEventsList(), xmlFilePath);	
 	}
 	
 	
-
+	/**
+ 	* Load Events from the .xml file
+ 	* @param xmlFilePath String path of the file
+ 	*/
 	public void loadFromXMLFile(String xmlFilePath) {
 		Vector<Event> loadedEvents = xmlManager.loadFromXMLFile(getEventsList(), xmlFilePath);	
 		for (Event e: loadedEvents)
@@ -171,23 +260,43 @@ public class EventContainer {
 			
 	}
 	
+	/**
+	 * Adds event to SQL database
+	 * @param eventID int ID of the event
+	 */
 	public void addEventToSQL(int eventID) {
 		sqlManager.createEvent(getEvent(eventID));
 	}
 	
+	/**
+	 * Delete event from SQL database
+	 * @param eventID int ID of the event
+	 */
 	public void deleteEventFromSQL(int eventID) {
 		sqlManager.deleteEvent(getEvent(eventID));
 	}
 	
+	/**
+	 * Loads events from SQL database
+	 */
 	public void loadEventsFromSQL() {
 		for (Event e: sqlManager.getAllEvents())
 			eventsList.add(e);
 	}
 	
+	/**
+	 * Exports events to .csv file
+	 * @param outlookPath String path of the file
+	 */
 	public void exportToCSV(String outlookPath) {
 		outlookManager.exportToCSV(getEventsList(), outlookPath);
 	}
 	
+	/**
+	 * Get events that name contains "filtr"
+	 * @param filtr String filtr that is searched through names
+	 * @return Vector of Events containing "filtr"
+	 */
 	public Vector<Event> getFilterEventsWithString(String filtr) {
 		Vector<Event> filteredEvents = new Vector<Event>();
 		for (Event e: eventsList)
@@ -197,6 +306,10 @@ public class EventContainer {
 		return filteredEvents;
 	}
 	
+	/**
+	 * Return Vector of Events from the next week
+	 * @return Vector of Events
+	 */
 	public Vector<Event> getEventsInNextWeek() {
 		Vector<Event> nextWeekEvents = new Vector<Event>();
 		

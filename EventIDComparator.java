@@ -6,6 +6,9 @@ public class EventIDComparator implements Comparator<Event> {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Compares events ID
+	 */
 	@Override
 	public int compare(Event arg0, Event arg1) {
 		return (arg0.getID() - arg1.getID());

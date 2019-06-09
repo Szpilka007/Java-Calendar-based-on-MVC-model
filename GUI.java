@@ -30,7 +30,9 @@ public class GUI extends JFrame implements ActionListener {
     String des = "";
     EventManager eManager = new EventManager();
     int Data;
-
+	/**
+	 * GUI constructor - made by Adam Krzanowski
+	 */
     GUI() {
     	
     	eManager.loadEventsFromSQL();

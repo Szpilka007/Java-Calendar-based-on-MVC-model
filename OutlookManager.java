@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.util.Vector;
 
 public class OutlookManager {
-	
+	/**
+	 * Exports events into .csv file
+	 * @param eventsList Vector of the Events to export
+	 * @param outlookPath Path for the new file
+	 */
 	public void exportToCSV(Vector<Event> eventsList, String outlookPath){
 		File file = new File(outlookPath);
 		

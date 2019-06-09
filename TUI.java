@@ -6,6 +6,9 @@ public class TUI {
 	private EventManager eventManager;
 	private Scanner scanner;
 	
+	/**
+	 * Add event through TUI
+	 */
 	private void addEvent() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("ADD EVENT: ");
@@ -27,6 +30,9 @@ public class TUI {
 		eventManager.addEvent(day, month, year, description, name);
 	}
 	
+	/**
+	 * Delete event through TUI
+	 */
 	private void deleteEvent() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("DELETE EVENT: ");
@@ -36,6 +42,9 @@ public class TUI {
 		eventManager.deleteEvent(id);
 	}
 	
+	/**
+	 * Delete too old events through TUI
+	 */
 	private void deleteTooOldEvents() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("DELETE TOO OLD EVENTS: ");		
@@ -51,6 +60,9 @@ public class TUI {
 		eventManager.removeTooOldEvents(day, month, year);
 	}
 	
+	/**
+	 * Modify event through TUI
+	 */
 	private void modifyEvent() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("MODIFY EVENT: ");	
@@ -75,6 +87,9 @@ public class TUI {
 		eventManager.modifyEvent(id, day, month, year, description, name);
 	}
 	
+	/**
+	 * Save to .xml file through TUI
+	 */
 	private void saveToXML() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("SAVE TO XML FILE: ");	
@@ -84,6 +99,9 @@ public class TUI {
 		eventManager.writeToXMLFile(path);
 	}
 	
+	/**
+	 * Load from .xml file through TUI
+	 */
 	private void loadFromXML() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("LOAD FROM XML FILE: ");	
@@ -93,6 +111,9 @@ public class TUI {
 		eventManager.loadFromXMLFile(path);
 	}
 	
+	/**
+	 * Export events to .csv file through TUI
+	 */
 	private void exportToCSV() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("EXPORT TO .CSV FILE: ");	
@@ -102,6 +123,9 @@ public class TUI {
 		eventManager.exportToCSV(path);
 	}
 	
+	/**
+	 * Filter events through TUI
+	 */
 	private void filteredEvents() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("SHOW FILTERED EVENTS: ");	
@@ -115,6 +139,9 @@ public class TUI {
 		String press = input.next();
 	}
 	
+	/**
+	 * Get events in next week through TUI
+	 */
 	private void eventsInNextWeek() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("EVENTS IN NEXT WEEK");
@@ -126,6 +153,9 @@ public class TUI {
 		
 	}
 	
+	/**
+	 * TUI constructor - made by Jacob Guzek
+	 */
 	TUI() {
 		eventManager = new EventManager();
 		scanner = new Scanner(System.in);
