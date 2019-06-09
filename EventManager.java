@@ -43,6 +43,9 @@ public class EventManager {
 	public Event getEvent(String name,int dayNumber, int monthNumber, int yearNumber){
 		return eventContainer.getEvent(name,dayNumber,monthNumber,yearNumber);
 	}
+	public Event getEvent(int id){
+		return eventContainer.getEvent(id);
+	}
 	
 	public void showEvents() {
 		eventContainer.showEvents();

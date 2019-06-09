@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="754cc41a-c5f1-46f4-8e56-24d03a1147f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/EventManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java-Calendar-based-on-MVC-model/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java-Calendar-based-on-MVC-model/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,8 +33,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EventManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
-              <caret line="66" column="87" selection-start-line="66" selection-start-column="87" selection-end-line="66" selection-end-column="87" />
+            <state relative-caret-position="306">
+              <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+              <folding>
+                <element signature="e#1396#1397#0" expanded="true" />
+                <element signature="e#1423#1424#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -43,8 +46,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EventContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2281">
-              <caret line="194" column="36" selection-start-line="194" selection-start-column="36" selection-end-line="194" selection-end-column="36" />
+            <state relative-caret-position="3114">
+              <caret line="193" column="36" selection-start-line="193" selection-start-column="36" selection-end-line="193" selection-end-column="36" />
+              <folding>
+                <element signature="e#4302#4303#0" expanded="true" />
+                <element signature="e#4365#4366#0" expanded="true" />
+                <element signature="e#4678#4679#0" expanded="true" />
+                <element signature="e#4726#4727#0" expanded="true" />
+                <element signature="e#4775#4776#0" expanded="true" />
+                <element signature="e#4823#4824#0" expanded="true" />
+                <element signature="e#4977#4978#0" expanded="true" />
+                <element signature="e#5040#5041#0" expanded="true" />
+                <element signature="e#5151#5158#0" expanded="true" />
+                <element signature="e#5375#5382#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,8 +94,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="799" column="46" selection-start-line="799" selection-start-column="46" selection-end-line="799" selection-end-column="46" />
+            <state relative-caret-position="211">
+              <caret line="544" column="76" selection-start-line="544" selection-start-column="76" selection-end-line="544" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,8 +106,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1972">
-              <caret line="118" column="8" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="8" />
+            <state relative-caret-position="2210">
+              <caret line="132" column="8" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -133,9 +148,9 @@
         <option value="$PROJECT_DIR$/year.java" />
         <option value="$PROJECT_DIR$/Event.java" />
         <option value="$PROJECT_DIR$/EventContainer.java" />
-        <option value="$PROJECT_DIR$/EventManager.java" />
         <option value="$PROJECT_DIR$/TUI.java" />
         <option value="$PROJECT_DIR$/main.java" />
+        <option value="$PROJECT_DIR$/EventManager.java" />
         <option value="$PROJECT_DIR$/GUI.java" />
       </list>
     </option>
@@ -327,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1560070803448</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Adding remainding events">
+      <created>1560083608069</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1560083608069</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -407,7 +429,8 @@
     <MESSAGE value="Repairing modifing event" />
     <MESSAGE value="Repairing showing events" />
     <MESSAGE value="Adding filtring events to GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding filtring events to GUI" />
+    <MESSAGE value="Adding remainding events" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding remainding events" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Java_Calendar_based_on_MVC_model$Java_Main.ic" NAME="Java-Main Coverage Results" MODIFIED="1559998677240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -445,13 +468,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EventManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="66" column="87" selection-start-line="66" selection-start-column="87" selection-end-line="66" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SQLManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -475,8 +491,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1972">
-          <caret line="118" column="8" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="8" />
+        <state relative-caret-position="2210">
+          <caret line="132" column="8" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -487,17 +503,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_181/src.zip!/java/awt/event/ActionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EventManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+          <folding>
+            <element signature="e#1396#1397#0" expanded="true" />
+            <element signature="e#1423#1424#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/EventContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2281">
-          <caret line="194" column="36" selection-start-line="194" selection-start-column="36" selection-end-line="194" selection-end-column="36" />
+        <state relative-caret-position="3114">
+          <caret line="193" column="36" selection-start-line="193" selection-start-column="36" selection-end-line="193" selection-end-column="36" />
+          <folding>
+            <element signature="e#4302#4303#0" expanded="true" />
+            <element signature="e#4365#4366#0" expanded="true" />
+            <element signature="e#4678#4679#0" expanded="true" />
+            <element signature="e#4726#4727#0" expanded="true" />
+            <element signature="e#4775#4776#0" expanded="true" />
+            <element signature="e#4823#4824#0" expanded="true" />
+            <element signature="e#4977#4978#0" expanded="true" />
+            <element signature="e#5040#5041#0" expanded="true" />
+            <element signature="e#5151#5158#0" expanded="true" />
+            <element signature="e#5375#5382#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="799" column="46" selection-start-line="799" selection-start-column="46" selection-end-line="799" selection-end-column="46" />
+        <state relative-caret-position="211">
+          <caret line="544" column="76" selection-start-line="544" selection-start-column="76" selection-end-line="544" selection-end-column="76" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

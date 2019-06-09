@@ -448,36 +448,50 @@ public class GUI extends JFrame implements ActionListener {
         if (e.getSource() == ModifyEv ) {
 
             JFrame add = new JFrame();
-            add.setBounds(100,200,500,230);
+            add.setBounds(100,200,550,300);
 
             JLabel name = new JLabel("Name: ");
             JLabel WriteDay = new JLabel("Day: ");
             JLabel WriteMonth = new JLabel("Month: ");
             JLabel WriteYear = new JLabel("Year: ");
+            JLabel Description = new JLabel("Description: ");
+            JLabel ID = new JLabel("ID:");
 
-            name.setBounds(20,5,50,50);
-            WriteDay.setBounds(20,30,50,50);
-            WriteMonth.setBounds(20,60,50,50);
-            WriteYear.setBounds(20,90,50,50);
+            name.setBounds(20,-10,50,50);
+            WriteDay.setBounds(20,20,50,50);
+            WriteMonth.setBounds(20,50,50,50);
+            WriteYear.setBounds(20,80,50,50);
+            ID.setBounds(20,170,50,50);
+            Description.setBounds(20,110,50,50);
 
             JTextArea Name = new JTextArea();
             JTextArea day = new JTextArea();
             JTextArea month = new JTextArea();
             JTextArea year = new JTextArea();
+            JTextArea id = new JTextArea();
+            JTextArea desc = new JTextArea();
 
-            Name.setBounds(110,18,300,20);
-            day.setBounds(110,48,300,20);
-            month.setBounds(110,78,300,20);
-            year.setBounds(110,108,300,20);
+            Name.setBounds(110,4,300,20);
+            day.setBounds(110,32,300,20);
+            month.setBounds(110,62,300,20);
+            year.setBounds(110,98,300,20);
+            id.setBounds(110,190,300,20);
+            desc.setBounds(110,128,300,20);
 
-            JButton addEvent = new JButton("Get event");
-            addEvent.setBounds(260,150,130,30);
+            JButton addEvent = new JButton("Show events");
+            JButton showEvents = new JButton("Get event");
+            JButton modifyEvent = new JButton("Modify event");
+            showEvents.setBounds(130,220,100,20);
+            showEvents.addActionListener(this);
+            addEvent.setBounds(260,220,100,20);
             addEvent.addActionListener(this);
+            modifyEvent.setBounds(400,220,100,20);
+            modifyEvent.addActionListener(this);
+
 
             add.setTitle("Modify event");
             add.setVisible(true);
             add.setLayout(null);
-            add.add(Name);
             add.add(name);
             add.add(WriteDay);
             add.add(WriteMonth);
@@ -485,99 +499,33 @@ public class GUI extends JFrame implements ActionListener {
             add.add(day);
             add.add(month);
             add.add(year);
+            add.add(ID);
+            add.add(Name);
+            add.add(id);
+            add.add(Description);
+            add.add(desc);
             add.add(addEvent);
+            add.add(showEvents);
+            add.add(modifyEvent);
 
 
             addEvent.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
                     try {
-                        String n = Name.getText();
                         String d = day.getText();
                         String m = month.getText();
                         String y = year.getText();
                         //Modyfikacja wydarzenia
-                        System.out.println(n + " " + d + " " + m + " " + y);
-                        Event e = eManager.getEvent(n,Integer.parseInt(d),Integer.parseInt(m),Integer.parseInt(y));
-                        eManager.showEvents();
-
-                        JFrame add = new JFrame();
-                        add.setBounds(100,200,500,300);
-
-                        JLabel name = new JLabel("Name: ");
-                        JLabel WriteDay = new JLabel("Day: ");
-                        JLabel WriteMonth = new JLabel("Month: ");
-                        JLabel WriteYear = new JLabel("Year: ");
-                        JLabel WriteDescription = new JLabel("Description: ");
-
-                        name.setBounds(20,5,50,50);
-                        WriteDay.setBounds(20,30,50,50);
-                        WriteMonth.setBounds(20,60,50,50);
-                        WriteYear.setBounds(20,90,50,50);
-                        WriteDescription.setBounds(20,120,80,50);
-
-                        JTextArea Name = new JTextArea();
-                        JTextArea day = new JTextArea();
-                        JTextArea month = new JTextArea();
-                        JTextArea year = new JTextArea();
-                        JTextArea description = new JTextArea();
-
-                        Name.setText(e.getName());
-                        day.setText(String.valueOf(e.getDayNumber()));
-                        month.setText(String.valueOf(e.getMonthNumber()));
-                        year.setText(String.valueOf(e.getYearNumber()));
-                        description.setText(d);
-
-                        Name.setBounds(110,18,300,20);
-                        day.setBounds(110,48,300,20);
-                        month.setBounds(110,78,300,20);
-                        year.setBounds(110,108,300,20);
-                        description.setBounds(110,138,300,60);
-
-                        eManager.deleteEve(e.getName(),e.getDayNumber(),e.getMonthNumber(),e.getYearNumber());
-
-                        JButton addEvent = new JButton("Modify event");
-                        addEvent.setBounds(300,220,100,30);
-                        addEvent.addActionListener(this);
-
-                        add.setTitle("Modify Event");
-                        add.setVisible(true);
-                        add.setLayout(null);
-                        add.add(Name);
-                        add.add(name);
-                        add.add(WriteDay);
-                        add.add(WriteMonth);
-                        add.add(WriteYear);
-                        add.add(WriteDescription);
-                        add.add(day);
-                        add.add(month);
-                        add.add(year);
-                        add.add(description);
-                        add.add(addEvent);
-
-
-                        addEvent.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent event) {
-                                try {
-                                    String n = Name.getText();
-                                    String d = day.getText();
-                                    String m = month.getText();
-                                    String y = year.getText();
-                                    String de = description.getText();
-                                    eManager.addEvent(Integer.parseInt(d), Integer.parseInt(m), Integer.parseInt(y), de, n);
-
-                                }catch(NumberFormatException e)
-                                {
-                                    JFrame f = new JFrame();
-                                    JOptionPane.showMessageDialog(f, "Data must be in format:\nName:      text\n" +
-                                            "Day:         number\n" +
-                                            "Month:       number\n" +
-                                            "Year:        number\n" +
-                                            "Description: text");
-                                }
-                            }
-                        });
+                        System.out.println(" " + d + " " + m + " " + y);
+                        Vector<Event> e = eManager.getEventsOnDate(Integer.parseInt(d),Integer.parseInt(m),Integer.parseInt(y));
+                        String des = "";
+                        for(int i =0; i<e.size(); i++)
+                        {
+                            des += e.get(i).getID()+" -- " +e.get(i).getName()+" -- "+e.get(i).getDescription()+"\n";
+                        }
+                        JFrame f = new JFrame();
+                        JOptionPane.showMessageDialog(f,des);
 
                     }catch(NumberFormatException e)
                     {
@@ -590,6 +538,44 @@ public class GUI extends JFrame implements ActionListener {
                     }
                 }
             });
+
+            showEvents.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                Event even = eManager.getEvent(Integer.parseInt(id.getText()));
+                Name.setText(even.getName());
+                day.setText(String.valueOf(even.getDayNumber()));
+                month.setText(String.valueOf(even.getMonthNumber()));
+                year.setText(String.valueOf(even.getYearNumber()));
+                desc.setText(String.valueOf(even.getDescription()));
+                eManager.deleteEvent(Integer.parseInt(id.getText()));
+                }
+            });
+
+            modifyEvent.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        String n = Name.getText();
+                        String d = day.getText();
+                        String m = month.getText();
+                        String y = year.getText();
+                        String de = desc.getText();
+                        eManager.addEvent(Integer.parseInt(d), Integer.parseInt(m), Integer.parseInt(y), de, n);
+
+                    }catch(NumberFormatException ev)
+                    {
+                        JFrame f = new JFrame();
+                        JOptionPane.showMessageDialog(f, "Data must be in format:\nName:      text\n" +
+                                "Day:         number\n" +
+                                "Month:       number\n" +
+                                "Year:        number\n" +
+                                "Description: text");
+                    }
+
+                }
+            });
+
 
         };
 
