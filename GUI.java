@@ -33,7 +33,7 @@ public class GUI extends JFrame implements ActionListener {
 
     GUI() {
     	
-    	//eManager.loadEventsFromSQL();
+    	eManager.loadEventsFromSQL();
         frame.setLayout(null);//using no layout managers
         frame.setSize(1200, 600);
         frame.setVisible(true);//making the frame visible
