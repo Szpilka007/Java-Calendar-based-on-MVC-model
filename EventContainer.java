@@ -95,19 +95,18 @@ public class EventContainer {
 	}
 
 	public boolean deleteEv(String name, int day, int month, int year){
-		System.out.println(eventsList.size());
-		for(Event e:eventsList)
-		{
-			if(name == e.getName() && day == e.getDayNumber() && month == e.getMonthNumber() && year == e.getYearNumber())
-			{
-				deleteEventFromSQL(e.getID());
-				deleteEvent(e.getID());
+		for(Event e:eventsList)	{
+			if(name == e.getName() && day == e.getDayNumber() && month == e.getMonthNumber() && year == e.getYearNumber())	{
+				
+				int id = e.getID();
+				eventsList.remove(getEvent(id));
+				deleteEventFromSQL(id);				
 				return true;
 			}
 		}
 		return false;
 	}
-
+	
 	public Event getEvent(String name, int day, int month, int year){
 		for(Event e:eventsList)
 		{
@@ -196,6 +195,24 @@ public class EventContainer {
 				filteredEvents.add(e);
 		
 		return filteredEvents;
+	}
+	
+	public Vector<Event> getEventsInNextWeek() {
+		Vector<Event> nextWeekEvents = new Vector<Event>();
+		
+		for (Event e:eventsList) {
+			Calendar calendar = Calendar.getInstance();
+			Calendar eventDate = Calendar.getInstance();
+			eventDate.set(e.getYearNumber(), e.getMonthNumber()-1, e.getDayNumber());
+			if (eventDate.after(calendar)) {
+				calendar.add(Calendar.DATE, 7);
+				if (eventDate.before(calendar))
+						nextWeekEvents.add(e);
+			}
+					
+		}		
+		
+		return nextWeekEvents;
 	}
 	
 }
