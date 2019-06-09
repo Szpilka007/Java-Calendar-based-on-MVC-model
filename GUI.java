@@ -21,7 +21,7 @@ public class GUI extends JFrame implements ActionListener {
     JLabel infoAboutEvent;
     JLabel eventLook = new JLabel(actualDay);
     JFrame frame = new JFrame();
-    JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme,SaveToXMLfile,LoadFromXmlFile,LoadToBase,ExportToCsv,RemoveEV,ModifyEv;
+    JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme,SaveToXMLfile,LoadFromXmlFile,LoadToBase,ExportToCsv,RemoveEV,ModifyEv,FilterEvent;
     JMenu Calendar, Events, Info,Settings;
     DefaultTableModel model;
     JLabel label = new JLabel();
@@ -33,7 +33,7 @@ public class GUI extends JFrame implements ActionListener {
 
     GUI() {
     	
-    	eManager.loadEventsFromSQL();
+    	//eManager.loadEventsFromSQL();
         frame.setLayout(null);//using no layout managers
         frame.setSize(1200, 600);
         frame.setVisible(true);//making the frame visible
@@ -63,6 +63,9 @@ public class GUI extends JFrame implements ActionListener {
 
         ModifyEv = new JMenuItem("Modify Event");
         ModifyEv.addActionListener(this);
+
+        FilterEvent = new JMenuItem("Filter Event by part of name");
+        FilterEvent.addActionListener(this);
 
         AboutProgram = new JMenuItem("About Program");
         AboutProgram.addActionListener(this);
@@ -94,6 +97,7 @@ public class GUI extends JFrame implements ActionListener {
         Events.add(RemoveEvent);
         Events.add(RemoveEV);
         Events.add(ModifyEv);
+        Events.add(FilterEvent);
         Info.add(AboutProgram);
         Settings.add(Theme);
         menuBar.add(Calendar);
@@ -669,6 +673,66 @@ public class GUI extends JFrame implements ActionListener {
                     ex.printStackTrace();
                 }
             }
+
+        }
+
+        if (e.getSource() == FilterEvent) {
+
+            JFrame add = new JFrame();
+            add.setBounds(100,200,500,150);
+
+            JLabel mainTitle = new JLabel("Filtred events");
+            mainTitle.setFont(new Font("Serif",Font.BOLD,21));
+            mainTitle.setBounds(10,10,300,20);
+            JLabel Part = new JLabel("Part of name: ");
+
+            Part.setBounds(20,30,80,50);
+
+            JTextArea part = new JTextArea();;
+
+            part.setBounds(110,48,300,20);
+
+
+            JButton addEvent = new JButton("Filtr");
+            addEvent.setBounds(300,80,100,30);
+            addEvent.addActionListener(this);
+
+            add.setTitle("Filtr Event");
+            add.setVisible(true);
+            add.setLayout(null);
+            add.add(mainTitle);
+            add.add(Part);
+            add.add(part);
+            add.add(addEvent);
+
+
+            addEvent.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    try {
+                        String d = part.getText();
+                        Vector<Event> e = new Vector<Event>();
+                        e = eManager.getFilterEventsWithString(d);
+                        String des = "";
+                        for(int i =0; i<e.size(); i++)
+                        {
+                            des += e.get(i).getDayNumber()+"--"+e.get(i).getMonthNumber()+"--"+e.get(i).getYearNumber()+"  "+e.get(i).getDescription()+"\n";
+                        }
+                        JFrame f = new JFrame();
+                        JOptionPane.showMessageDialog(f,des);
+
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        JFrame f = new JFrame();
+                        JOptionPane.showMessageDialog(f, "Data must be in format:\n" +
+                                "Day:         number\n" +
+                                "Month:       number\n" +
+                                "Year:        number\n");
+                    }
+                }
+            });
+
 
         }
 
