@@ -884,16 +884,17 @@ public class GUI extends JFrame implements ActionListener {
 
         Vector<Event> e = new Vector<Event>();
         e = eManager.getEventsInNextWeek();
+        String desc = "Events in future week:\n";
         if(e.size()!=0) {
-            String des = "Events in future week:\n";
+            desc = "Events in future week:\n";
             for (int i = 0; i < e.size(); i++) {
-                des += e.get(i).getDayNumber() + "--" + e.get(i).getMonthNumber() + "--" + e.get(i).getYearNumber() + "  " + e.get(i).getName() + "  " + e.get(i).getDescription() + "\n";
+                desc += e.get(i).getDayNumber() + "--" + e.get(i).getMonthNumber() + "--" + e.get(i).getYearNumber() + "  " + e.get(i).getName() + "  " + e.get(i).getDescription() + "\n";
             }
         }
         else
-            des[0] = "No events";
+            desc = "No events";
         JFrame f = new JFrame();
-        JOptionPane.showMessageDialog(f,des);
+        JOptionPane.showMessageDialog(f,desc);
 
     }
 
