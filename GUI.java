@@ -1,12 +1,9 @@
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Calendar;
 import java.util.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * param
@@ -54,42 +51,68 @@ public class GUI extends JFrame implements ActionListener {
         //USTAWIENIA PASKA NA GORE
 
         AddEvent = new JMenuItem("Add Event");
+        KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_DOWN_MASK);
+        AddEvent.setAccelerator(key);
         AddEvent.addActionListener(this);
 
         RemoveEvent = new JMenuItem("Remove Event before date");
+        KeyStroke key1 = KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_DOWN_MASK);
+        RemoveEvent.setAccelerator(key1);
         RemoveEvent.addActionListener(this);
 
         RemoveEV = new JMenuItem("Remove Event");
+        KeyStroke key8 = KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_DOWN_MASK);
+        RemoveEV.setAccelerator(key8);
         RemoveEV.addActionListener(this);
 
         ModifyEv = new JMenuItem("Modify Event");
+        KeyStroke key9 = KeyStroke.getKeyStroke(KeyEvent.VK_U, KeyEvent.CTRL_DOWN_MASK);
+        ModifyEv.setAccelerator(key9);
         ModifyEv.addActionListener(this);
 
         FilterEvent = new JMenuItem("Filter Event by part of name");
+        KeyStroke key6 = KeyStroke.getKeyStroke(KeyEvent.VK_I, KeyEvent.CTRL_DOWN_MASK);
+        FilterEvent.setAccelerator(key6);
         FilterEvent.addActionListener(this);
 
         AboutProgram = new JMenuItem("About Program");
+        KeyStroke key7 = KeyStroke.getKeyStroke(KeyEvent.VK_K, KeyEvent.CTRL_DOWN_MASK);
+        AboutProgram.setAccelerator(key7);
         AboutProgram.addActionListener(this);
 
         showEvents = new JMenuItem("Show every events");
+        KeyStroke key3 = KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_DOWN_MASK);
+        showEvents.setAccelerator(key3);
         showEvents.addActionListener(this);
 
         Reminders = new JMenuItem("Reminders");
+        KeyStroke key10 = KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.CTRL_DOWN_MASK);
+        Reminders.setAccelerator(key10);
         Reminders.addActionListener(this);
 
         Theme = new JMenuItem("Theme");
+        KeyStroke key5 = KeyStroke.getKeyStroke(KeyEvent.VK_F5, KeyEvent.CTRL_DOWN_MASK);
+        Theme.setAccelerator(key5);
         Theme.addActionListener(this);
 
         SaveToXMLfile = new JMenuItem("Save to XML file");
+        KeyStroke key4 = KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK);
+        SaveToXMLfile.setAccelerator(key4);
         SaveToXMLfile.addActionListener(this);
 
         LoadFromXmlFile = new JMenuItem("Load from XML file");
+        KeyStroke key11 = KeyStroke.getKeyStroke(KeyEvent.VK_M, KeyEvent.CTRL_DOWN_MASK);
+        LoadFromXmlFile.setAccelerator(key11);
         LoadFromXmlFile.addActionListener(this);
 
         LoadToBase = new JMenuItem("Load From SQL Base");
+        KeyStroke key12 = KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.CTRL_DOWN_MASK);
+        LoadToBase.setAccelerator(key12);
         LoadToBase.addActionListener(this);
 
         ExportToCsv = new JMenuItem("Export To CSV");
+        KeyStroke key13 = KeyStroke.getKeyStroke(KeyEvent.VK_H ,KeyEvent.CTRL_DOWN_MASK);
+        ExportToCsv.setAccelerator(key13);
         ExportToCsv.addActionListener(this);
 
         menuBar = new JMenuBar();

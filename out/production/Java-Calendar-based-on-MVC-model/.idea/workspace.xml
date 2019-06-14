@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="754cc41a-c5f1-46f4-8e56-24d03a1147f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java-Calendar-based-on-MVC-model/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java-Calendar-based-on-MVC-model/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -92,8 +90,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="783" column="46" lean-forward="true" selection-start-line="783" selection-start-column="46" selection-end-line="783" selection-end-column="46" />
+            <state relative-caret-position="115">
+              <caret line="652" column="36" selection-start-line="652" selection-start-column="36" selection-end-line="652" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -354,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1560088293159</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Repairing removing events">
+      <created>1560106196995</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1560106196995</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -370,7 +375,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32107496" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25318247" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39886847" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -436,7 +441,8 @@
     <MESSAGE value="Adding filtring events to GUI" />
     <MESSAGE value="Adding remainding events" />
     <MESSAGE value="Repairing modyfing events" />
-    <option name="LAST_COMMIT_MESSAGE" value="Repairing modyfing events" />
+    <MESSAGE value="Repairing removing events" />
+    <option name="LAST_COMMIT_MESSAGE" value="Repairing removing events" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Java_Calendar_based_on_MVC_model$Java_Main.ic" NAME="Java-Main Coverage Results" MODIFIED="1559998677240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -546,8 +552,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="783" column="46" lean-forward="true" selection-start-line="783" selection-start-column="46" selection-end-line="783" selection-end-column="46" />
+        <state relative-caret-position="115">
+          <caret line="652" column="36" selection-start-line="652" selection-start-column="36" selection-end-line="652" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
