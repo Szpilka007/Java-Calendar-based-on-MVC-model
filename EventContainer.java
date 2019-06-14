@@ -40,7 +40,7 @@ public class EventContainer {
 	 * @return Vector of Events
 	 */
 	public Vector<Event> getEventsList() {
-		return eventsList;
+		return this.eventsList;
 	}
 	
 	/**

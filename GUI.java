@@ -21,7 +21,7 @@ public class GUI extends JFrame implements ActionListener {
     JLabel infoAboutEvent;
     JLabel eventLook = new JLabel(actualDay);
     JFrame frame = new JFrame();
-    JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme,SaveToXMLfile,LoadFromXmlFile,LoadToBase,ExportToCsv,RemoveEV,ModifyEv,FilterEvent,Reminders;
+    JMenuItem AddEvent, AboutProgram,RemoveEvent,Theme,SaveToXMLfile,LoadFromXmlFile,LoadToBase,ExportToCsv,RemoveEV,ModifyEv,FilterEvent,Reminders,showEvents;
     JMenu Calendar, Events, Info,Settings;
     DefaultTableModel model;
     JLabel label = new JLabel();
@@ -71,6 +71,9 @@ public class GUI extends JFrame implements ActionListener {
         AboutProgram = new JMenuItem("About Program");
         AboutProgram.addActionListener(this);
 
+        showEvents = new JMenuItem("Show every events");
+        showEvents.addActionListener(this);
+
         Reminders = new JMenuItem("Reminders");
         Reminders.addActionListener(this);
 
@@ -102,6 +105,7 @@ public class GUI extends JFrame implements ActionListener {
         Events.add(RemoveEV);
         Events.add(ModifyEv);
         Events.add(FilterEvent);
+        Events.add(showEvents);
         Info.add(AboutProgram);
         Settings.add(Theme);
         menuBar.add(Calendar);
@@ -688,6 +692,9 @@ public class GUI extends JFrame implements ActionListener {
             JRadioButton rb1,rb2,rb3;
             JButton b;
             JFrame add = new JFrame();
+            add.setTitle("Settings");
+            JLabel titttle = new JLabel("Set a theme:");
+            titttle.setBounds(100,50,100,30);
             rb1=new JRadioButton("Default");
             rb1.setBounds(100,50,100,30);
             rb2=new JRadioButton("Old");
@@ -704,10 +711,12 @@ public class GUI extends JFrame implements ActionListener {
             add(rb1);
             add(rb2);
             add(rb3);
+            add.add(titttle);
             add(b);
             setSize(300,300);
             setLayout(null);
             setVisible(true);
+            add.repaint();
 
             b.addActionListener(new ActionListener() {
                 @Override
@@ -772,6 +781,21 @@ public class GUI extends JFrame implements ActionListener {
                 }
             }
 
+        }
+
+        if (e.getSource() == showEvents) {
+            Vector<Event> ever = new Vector<Event>();
+            ever = eManager.getAllEvents();
+            if(ever.size()!=0) {
+                String des = "Events in future week:\n";
+                for (int i = 0; i < ever.size(); i++) {
+                    des += ever.get(i).getDayNumber() + "--" + ever.get(i).getMonthNumber() + "--" + ever.get(i).getYearNumber() + "  " + ever.get(i).getName() + "  " + ever.get(i).getDescription() + "\n";
+                }
+            }
+            else
+                des = "No events";
+            JFrame f = new JFrame();
+            JOptionPane.showMessageDialog(f,des);
         }
 
         if (e.getSource() == FilterEvent) {

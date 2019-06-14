@@ -91,6 +91,8 @@ public class EventManager {
 	public void showEvents() {
 		eventContainer.showEvents();
 	}
+
+	public Vector<Event> getAllEvents(){ return eventContainer.getEventsList();};
 	
 	/**
 	 * Modify event
