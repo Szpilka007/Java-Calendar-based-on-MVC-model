@@ -809,16 +809,16 @@ public class GUI extends JFrame implements ActionListener {
         if (e.getSource() == showEvents) {
             Vector<Event> ever = new Vector<Event>();
             ever = eManager.getAllEvents();
+            String desc = "All events:\n";
             if(ever.size()!=0) {
-                String des = "Events in future week:\n";
                 for (int i = 0; i < ever.size(); i++) {
-                    des += ever.get(i).getDayNumber() + "--" + ever.get(i).getMonthNumber() + "--" + ever.get(i).getYearNumber() + "  " + ever.get(i).getName() + "  " + ever.get(i).getDescription() + "\n";
+                    desc += ever.get(i).getDayNumber() + "--" + ever.get(i).getMonthNumber() + "--" + ever.get(i).getYearNumber() + "  " + ever.get(i).getName() + "  " + ever.get(i).getDescription() + "\n";
                 }
             }
             else
-                des = "No events";
+                desc = "No events";
             JFrame f = new JFrame();
-            JOptionPane.showMessageDialog(f,des);
+            JOptionPane.showMessageDialog(f,desc);
         }
 
         if (e.getSource() == FilterEvent) {
